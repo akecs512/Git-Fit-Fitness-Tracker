@@ -6,24 +6,28 @@ const typeDefs = `
     activities: [Activity]
   }
 
+  type Query {
+    me: User
+  }
+
   type Activity {
     _id: ID
     name: String
-    duration: Int
-    date: Date
+    duration: String
+    date: String
     notes: String
   }
 
   input ActivityInput {
     name: String
-    duration: Int
-    date: Date
+    duration: String
+    date: String
     notes: String
   }
 
   type Query {
-    profiles: [Profile]!
-    profile(profileId: ID!): Profile
+    users: [User]!
+    user(profileId: ID!): User
   }
 
   type Mutation {
