@@ -19,7 +19,7 @@ const userSchema = new Schema({
       type: String,
       trim: true,
       required: true,
-      password
+      password: true,
     },
   ],
 });

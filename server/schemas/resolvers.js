@@ -1,34 +1,34 @@
-const { Profile } = require('../models');
+const { User } = require('../models');
 
 const resolvers = {
   Query: {
-    profiles: async () => {
-      return Profile.find();
-    },
-
-    profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+    Query: {
+      me: async (parent, args, context) => {
+        if (context.user) {
+          return User.findOne({ _id: context.user._id }).populate('savedBooks');
+        }
+        throw new AuthenticationError('You need to be logged in!');
+      },
     },
   },
 
   Mutation: {
-    addProfile: async (parent, { name }) => {
-      return Profile.create({ name });
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+      return { token, user };
     },
-    addSkill: async (parent, { profileId, activity }) => {
-      return Profile.findOneAndUpdate(
-        { _id: profileId },
-        {
-          $addToSet: { skills: skill },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
-    removeProfile: async (parent, { profileId }) => {
-      return Profile.findOneAndDelete({ _id: profileId });
+    addActivity: async (parent, { bookData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedActivities: bookData } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw AuthenticationError;
+      ('You need to be logged in!');
     },
     removeActivity: async (parent, { profileId, skill }) => {
       return Profile.findOneAndUpdate(

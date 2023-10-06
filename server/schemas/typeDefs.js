@@ -16,8 +16,8 @@ const typeDefs = `
 
   input ActivityInput {
     name: String
-    duration: Int
-    date: Date
+    duration: String
+    date: String
     notes: String
   }
 
