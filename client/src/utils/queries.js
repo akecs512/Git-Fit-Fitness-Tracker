@@ -1,11 +1,13 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PROFILES = gql`
+export const QUERY_ACTIVITIES = gql`
   query allProfiles {
     profiles {
       _id
       name
-      skills
+      duration
+      date
+      notes
     }
   }
 `;

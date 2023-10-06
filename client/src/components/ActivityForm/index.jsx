@@ -37,17 +37,25 @@ const ActivityForm = () => {
       >
         <div className="col-12 col-lg-9">
           <input
-            placeholder="Add your profile name..."
-            value={name}
+            placeholder="Enter Activity Here..."
+            
             className="form-input w-100"
             onChange={(event) => setName(event.target.value)}
           />
         </div>
-
+<></>
         <div class='date'>
-          <input type='date' name='date' />
+          <input type='date' />
         </div>
 
+        <div class='duration'>
+          <input type='time' />
+        </div>
+
+        <div class='notes'>
+          <input type='text' />
+        </div>
+<></>
         <div className="col-12 col-lg-3">
           <button className="btn btn-info btn-block py-3" type="submit">
             Submit Activity
