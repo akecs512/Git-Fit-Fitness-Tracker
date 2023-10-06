@@ -44,6 +44,10 @@ const ActivityForm = () => {
           />
         </div>
 
+        <div class='date'>
+          <input type='date' name='date' />
+        </div>
+
         <div className="col-12 col-lg-3">
           <button className="btn btn-info btn-block py-3" type="submit">
             Submit Activity
