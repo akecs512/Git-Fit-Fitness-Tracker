@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-<<<<<<< HEAD
 export const ADD_ACTIVITY = gql`
   mutation addActivity($name: String!) {
     addActivity(name: $name) {
@@ -9,14 +8,7 @@ export const ADD_ACTIVITY = gql`
       duration
       date
       notes
-=======
-export const ADD_PROFILE = gql`
-  mutation addUser($name: String!) {
-    addUser(name: $name) {
-      _id
-      name
-      activitys
->>>>>>> 6dda95c53939c19ac973efe39d2142c02484e734
+
     }
   }
 `;
