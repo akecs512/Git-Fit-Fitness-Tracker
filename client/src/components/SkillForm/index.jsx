@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
 
-import { ADD_SKILL } from '../../utils/mutations';
+import { ADD_SKILL } from "../../utils/mutations";
 
-const SkillForm = ({ profileId }) => {
-  const [skill, setSkill] = useState('');
+const ActivityForm = ({ profileId }) => {
+  const [activity, setActivity] = useState("");
 
-  const [addSkill, { error }] = useMutation(ADD_SKILL);
+  const [addActivity, { error }] = useMutation(ADD_SKILL);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addSkill({
-        variables: { profileId, skill },
+      const { data } = await addActivity({
+        variables: { profileId, activity },
       });
 
-      setSkill('');
+      setActivity("");
     } catch (err) {
       console.error(err);
     }
@@ -32,9 +32,9 @@ const SkillForm = ({ profileId }) => {
         <div className="col-12 col-lg-9">
           <input
             placeholder="Information"
-            value={skill}
+            value={activity}
             className="form-input w-100"
-            onChange={(event) => setSkill(event.target.value)}
+            onChange={(event) => setActivity(event.target.value)}
           />
         </div>
 
@@ -53,4 +53,4 @@ const SkillForm = ({ profileId }) => {
   );
 };
 
-export default SkillForm;
+export default ActivityForm;

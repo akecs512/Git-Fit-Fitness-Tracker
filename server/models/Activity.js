@@ -9,13 +9,13 @@ const activitySchema = new Schema({
   },
   duration: [
     {
-      type: Int,
+      type: String,
       trim: true,
     },
   ],
   date: [
     {
-      type: Date,
+      type: String,
       required: true,
     },
   ],
