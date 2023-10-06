@@ -1,21 +1,21 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_PROFILES = gql`
-  query allProfiles {
-    profiles {
+  query allUsers {
+    users {
       _id
       name
-      skills
+      activitys
     }
   }
 `;
 
 export const QUERY_SINGLE_PROFILE = gql`
-  query singleProfile($profileId: ID!) {
-    profile(profileId: $profileId) {
+  query singleUser($profileId: ID!) {
+    user(profileId: $profileId) {
       _id
       name
-      skills
+      activitys
     }
   }
 `;

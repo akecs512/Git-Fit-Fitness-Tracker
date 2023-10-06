@@ -1,33 +1,30 @@
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
 
-import ProfileList from '../components/ProfileList';
-import ProfileForm from '../components/ProfileForm';
+import UserList from "../components/UserList";
+import UserForm from "../components/UserForm";
 
-import { QUERY_PROFILES } from '../utils/queries';
+import { QUERY_PROFILES } from "../utils/queries";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_PROFILES);
 
-  const profiles = data?.profiles || [];
+  const users = data?.users || [];
 
   return (
     <main>
       <div className="flex-row justify-center">
         <div
           className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: '1px dotted #1a1a1a' }}
+          style={{ border: "1px dotted #1a1a1a" }}
         >
-          <ProfileForm />
+          <UserForm />
         </div>
 
         <div className="col-12 col-md-10 my-3">
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <ProfileList
-              profiles={profiles}
-              title="Profile List"
-            />
+            <UserList users={users} title="User List" />
           )}
         </div>
       </div>

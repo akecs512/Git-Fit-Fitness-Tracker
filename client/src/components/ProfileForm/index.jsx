@@ -1,28 +1,25 @@
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
 
-import { ADD_PROFILE } from '../../utils/mutations';
-import { QUERY_PROFILES } from '../../utils/queries';
+import { ADD_PROFILE } from "../../utils/mutations";
+import { QUERY_PROFILES } from "../../utils/queries";
 
-const ProfileForm = () => {
-  const [name, setName] = useState('');
+const UserForm = () => {
+  const [name, setName] = useState("");
 
-  const [addProfile, { error }] = useMutation(ADD_PROFILE, {
-    refetchQueries: [
-      QUERY_PROFILES,
-      'allProfiles'
-    ]
+  const [addUser, { error }] = useMutation(ADD_PROFILE, {
+    refetchQueries: [QUERY_PROFILES, "allUsers"],
   });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addProfile({
+      const { data } = await addUser({
         variables: { name },
       });
-      
-      setName('');
+
+      setName("");
     } catch (err) {
       console.error(err);
     }
@@ -30,14 +27,14 @@ const ProfileForm = () => {
 
   return (
     <div>
-      <h3>Add Profile</h3>
+      <h3>Add User</h3>
       <form
         className="flex-row justify-center justify-space-between-md align-center"
         onSubmit={handleFormSubmit}
       >
         <div className="col-12 col-lg-9">
           <input
-            placeholder="Add your profile name..."
+            placeholder="Add your user name..."
             value={name}
             className="form-input w-100"
             onChange={(event) => setName(event.target.value)}
@@ -46,7 +43,7 @@ const ProfileForm = () => {
 
         <div className="col-12 col-lg-3">
           <button className="btn btn-info btn-block py-3" type="submit">
-            Add Profile
+            Add User
           </button>
         </div>
         {error && (
@@ -59,4 +56,4 @@ const ProfileForm = () => {
   );
 };
 
-export default ProfileForm;
+export default UserForm;

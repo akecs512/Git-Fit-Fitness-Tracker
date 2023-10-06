@@ -1,14 +1,14 @@
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from './App.jsx'
-import Home from './pages/Home'
-import Profile from './pages/Profile'
-import Error from './pages/Error'
+import App from "./App.jsx";
+import Home from "./pages/Home";
+import User from "./pages/User";
+import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     errorElement: <Error />,
     children: [
@@ -17,13 +17,13 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/profiles/:profileId',
-        element: <Profile />,
+        path: "/users/:profileId",
+        element: <User />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
-)
+);
