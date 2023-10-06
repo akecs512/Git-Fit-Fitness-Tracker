@@ -1,8 +1,24 @@
 const typeDefs = `
-  type Profile {
+  type User {
+    _id: ID
+    userName: String
+    email: String
+    activities: [Activity]
+  }
+
+  type Activity {
     _id: ID
     name: String
-    skills: [String]!
+    duration: Int
+    date: Date
+    notes: String
+  }
+
+  input ActivityInput {
+    name: String
+    duration: Int
+    date: Date
+    notes: String
   }
 
   type Query {
@@ -11,10 +27,10 @@ const typeDefs = `
   }
 
   type Mutation {
-    addProfile(name: String!): Profile
-    addSkill(profileId: ID!, skill: String!): Profile
-    removeProfile(profileId: ID!): Profile
-    removeSkill(profileId: ID!, skill: String!): Profile
+    addUser(userName: String!): User
+    addActivity(input: ActivityInput): User
+    removeActivity(_id: ID!): User
+    updateActivity(_id: ID!): User
   }
 `;
 

@@ -15,7 +15,7 @@ const resolvers = {
     addProfile: async (parent, { name }) => {
       return Profile.create({ name });
     },
-    addSkill: async (parent, { profileId, skill }) => {
+    addSkill: async (parent, { profileId, activity }) => {
       return Profile.findOneAndUpdate(
         { _id: profileId },
         {
@@ -30,7 +30,7 @@ const resolvers = {
     removeProfile: async (parent, { profileId }) => {
       return Profile.findOneAndDelete({ _id: profileId });
     },
-    removeSkill: async (parent, { profileId, skill }) => {
+    removeActivity: async (parent, { profileId, skill }) => {
       return Profile.findOneAndUpdate(
         { _id: profileId },
         { $pull: { skills: skill } },
