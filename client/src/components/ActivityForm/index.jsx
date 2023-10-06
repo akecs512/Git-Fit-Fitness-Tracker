@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { ADD_PROFILE } from '../../utils/mutations';
-import { QUERY_PROFILES } from '../../utils/queries';
+import { ADD_ACTIVITY } from '../../utils/mutations';
+import { QUERY_ACTIVITIES } from '../../utils/queries';
 
-const ProfileForm = () => {
+const ActivityForm = () => {
   const [name, setName] = useState('');
 
-  const [addProfile, { error }] = useMutation(ADD_PROFILE, {
+  const [addActivity, { error }] = useMutation(ADD_ACTIVITY, {
     refetchQueries: [
-      QUERY_PROFILES,
-      'allProfiles'
+      QUERY_ACTIVITIES,
+      'allActivities'
     ]
   });
 
@@ -18,7 +18,7 @@ const ProfileForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addProfile({
+      const { data } = await addActivity({
         variables: { name },
       });
       
@@ -30,7 +30,7 @@ const ProfileForm = () => {
 
   return (
     <div>
-      <h3>Add Profile</h3>
+      <h3>Enter Activity</h3>
       <form
         className="flex-row justify-center justify-space-between-md align-center"
         onSubmit={handleFormSubmit}
@@ -46,7 +46,7 @@ const ProfileForm = () => {
 
         <div className="col-12 col-lg-3">
           <button className="btn btn-info btn-block py-3" type="submit">
-            Add Profile
+            Submit Activity
           </button>
         </div>
         {error && (
@@ -59,4 +59,4 @@ const ProfileForm = () => {
   );
 };
 
-export default ProfileForm;
+export default ActivityForm;
