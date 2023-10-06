@@ -26,12 +26,13 @@ const typeDefs = `
   }
 
   type Query {
-    users: [User]!
-    user(profileId: ID!): User
+    me: User
   }
 
   type Mutation {
-    addUser(userName: String!): User
+    addUser(userName: String!): Auth
+    login(userName: String!, password: String!): Auth
+
     addActivity(input: ActivityInput): User
     removeActivity(_id: ID!): User
     updateActivity(_id: ID!): User
