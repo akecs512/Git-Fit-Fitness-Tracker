@@ -14,7 +14,7 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4>Footer </h4>
+        <h4>&copy; {new Date().getFullYear()} - Git Fit</h4>
       </div>
     </footer>
   );

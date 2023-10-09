@@ -1,30 +1,22 @@
 import { useQuery } from "@apollo/client";
 
-import UserList from "../components/UserList";
-import UserForm from "../components/UserForm";
+import WorkoutsList from "../components/WorkoutsList";
 
-import { QUERY_PROFILES } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_PROFILES);
+  const { loading, data } = useQuery(QUERY_ME);
 
-  const users = data?.users || [];
+  const workouts = data?.me?.workouts || [];
 
   return (
     <main>
       <div className="flex-row justify-center">
-        <div
-          className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: "1px dotted #1a1a1a" }}
-        >
-          <UserForm />
-        </div>
-
         <div className="col-12 col-md-10 my-3">
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <UserList users={users} title="User List" />
+            workouts && <WorkoutsList workouts={workouts} title="Workouts..." />
           )}
         </div>
       </div>

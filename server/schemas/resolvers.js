@@ -1,22 +1,27 @@
-const { User } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { User } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
+    users: async () => {
+      return User.find();
+    },
+
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
+    },
+    // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id }).select(
-          '-__v -password'
-        );
-        return userData;
+        return User.findOne({ _id: context.user._id });
       }
-      throw new AuthenticationError('Not logged in');
+      throw AuthenticationError;
     },
   },
 
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
+    addUser: async (parent, { name, email, password }) => {
+      const user = await User.create({ name, email, password });
       const token = signToken(user);
 
       return { token, user };
@@ -37,57 +42,44 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addActivity: async (parent, { input }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { savedActivities: input } },
-          { new: true, runValidators: true }
-        );
-        return updatedUser;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
 
-    removeActivity: async (parent, { _id }, context) => {
+    // Add a third argument to the resolver to access data in our `context`
+    addWorkout: async (parent, { userId, workout }, context) => {
+      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
+        return User.findOneAndUpdate(
+          { _id: userId },
+          {
+            $addToSet: { workouts: workout },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      // If user attempts to execute this mutation and isn't logged in, throw an error
+      throw AuthenticationError;
+    },
+    // Set up mutation so a logged in user can only remove their user and no one else's
+    removeUser: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOneAndDelete({ _id: context.user._id });
+      }
+      throw AuthenticationError;
+    },
+    // Make it so a logged in user can only remove a workout from their own user
+    removeWorkout: async (parent, { workout }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedActivities: { _id } } },
+          { $pull: { workouts: workout } },
           { new: true }
         );
-        return updatedUser;
       }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    updateActivity: async (parent, { _id, input }, context) => {
-      if (context.user) {
-        try {
-          const user = await User.findOne({ _id: context.user._id });
-          if (!user) {
-            throw new AuthenticationError('User not found');
-          }  
-          const activityIndex = user.activities.findIndex(
-            (activity) => activity._id.toString() === _id
-          );
-          if (activityIndex === -1) {
-            throw new Error('Activity not found');
-          }
-          user.activities[activityIndex] = {
-            ...user.activities[activityIndex],
-            ...input,
-          };
-          const updatedUser = await user.save();
-  
-          return updatedUser;
-        } catch (error) {
-          throw new Error(`Error updating activity: ${error.message}`);
-        }
-      }
-      throw new AuthenticationError('You need to be logged in!');
+      throw AuthenticationError;
     },
   },
 };
-
 
 module.exports = resolvers;
