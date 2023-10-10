@@ -26,19 +26,27 @@ const WorkoutForm = ({ userId }) => {
   };
 
   return (
+    <>  
     <div>
       <h4></h4>
 
       {Auth.loggedIn() ? (
+    
+   
+
+<div className="card glass">
+
+  <div className="card-body">
+    <h2 className="card-title text-5xl justify-center text-secondary font-bold">Add Workout</h2>
         <form
-          className="flex flex-row justify-center justify-space-between-md align-center"
+          className="flex flex-row justify-center justify-space-between-md align-center mt-8"
           onSubmit={handleFormSubmit}
         >
           <div className="form-control flex flex-col col-12 col-lg-9">
             <input
               placeholder="Name of workout..."
               value={workout}
-              className="form-input borderw-100"
+              className="form-input border "
               onChange={(event) => setWorkout(event.target.value)}
             />
 
@@ -71,14 +79,22 @@ const WorkoutForm = ({ userId }) => {
           )}
           </div>
         </form>
+        
+
+  </div>
+</div>
+
+
       ) : (
         <p>
-          You need to be logged in to add a new workout Please{" "}
+          You need to be logged in to add a workout. Please{" "}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
     </div>
+    </>
   );
-};
+};  
+
 
 export default WorkoutForm;
