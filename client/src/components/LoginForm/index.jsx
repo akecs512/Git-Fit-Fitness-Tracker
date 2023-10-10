@@ -5,7 +5,7 @@ import { LOGIN_USER } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-const Login = (props) => {
+const LoginForm = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -48,7 +48,7 @@ const Login = (props) => {
             {data ? (
               <p>
                 Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/Home">back to the homepage.</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
@@ -77,7 +77,8 @@ const Login = (props) => {
                 </button>
 
                 <div className="flex pt-8 items-center justify-between pb-6">
-                  <p className="mb-0">Don't have an account?
+                  <p className="mb-0">
+                    Don't have an account?
                     <Link className="btn btn-sm btn-light ml-4" to="/signup">
                       Signup
                     </Link>{" "}
@@ -98,4 +99,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default LoginForm;

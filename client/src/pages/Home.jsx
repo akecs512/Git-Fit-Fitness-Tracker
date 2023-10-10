@@ -1,10 +1,12 @@
 import { useQuery } from "@apollo/client";
 
 import WorkoutsList from "../components/WorkoutsList";
+import Header from "../components/Header";
 
 import { QUERY_ME } from "../utils/queries";
 
 const Home = () => {
+  <Header />
   const { loading, data } = useQuery(QUERY_ME);
 
   const workouts = data?.me?.workouts || [];
