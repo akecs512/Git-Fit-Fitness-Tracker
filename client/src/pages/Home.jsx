@@ -6,12 +6,15 @@ import Header from "../components/Header";
 import { QUERY_ME } from "../utils/queries";
 
 const Home = () => {
-  <Header />
+
+
   const { loading, data } = useQuery(QUERY_ME);
 
   const workouts = data?.me?.workouts || [];
 
   return (
+    <>
+    <Header />
     <main>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
@@ -23,6 +26,7 @@ const Home = () => {
         </div>
       </div>
     </main>
+    </>
   );
 };
 
