@@ -75,6 +75,14 @@ const Login = (props) => {
                 >
                   Submit
                 </button>
+
+                <div className="flex pt-8 items-center justify-between pb-6">
+                  <p className="mb-0">Don't have an account?
+                    <Link className="btn btn-sm btn-light ml-4" to="/signup">
+                      Signup
+                    </Link>{" "}
+                  </p>
+                </div>
               </form>
             )}
 
