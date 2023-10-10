@@ -39,7 +39,7 @@
 }
 
 .card {
-  padding: 2em;
+  /* padding: 2em; */
 }
 
 .read-the-docs {
@@ -56,4 +56,10 @@
   padding: 0.5rem;
   margin: 0.5rem 0;
   width: 100%;
+}
+
+.login-image {
+  background-image: url("/running.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
