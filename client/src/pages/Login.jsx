@@ -1,94 +1,41 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import React from "react";
+import LoginForm from "./../components/LoginForm";
 
-import Auth from '../utils/auth';
-
-const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
-
-  // update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
-  // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-    try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
-    }
-
-    // clear form values
-    setFormState({
-      email: '',
-      password: '',
-    });
-  };
-
+export default function Login() {
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+    <section className="h-full bg-neutral-200 dark:bg-neutral-700">
+      <div className="container h-full p-10">
+        <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+          <div className="w-full">
+            <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
+              <div className="g-0 lg:flex lg:flex-wrap">
+                {/* <!-- Left column container--> */}
+                <div className="px-4 md:px-0 lg:w-6/12">
+                  <div className="md:mx-6 md:p-12">
+                    {/* <!--Logo--> */}
+                    <div className="text-center">
+                      <img
+                        className="mx-auto w-48"
+                        src="logoShape.png"
+                        alt="logo"
+                      />
+                      <h4 className="mt-1 pb-1 pt-8 text-xl font-semibold">
+                        Login
+                      </h4>
+                    </div>
+                    <LoginForm />
+                  </div>
+                </div>
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
+                {/* <!-- Right column container with background and description--> */}
+                <div className="login-image flex bg-center bg-auto items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none">
+                  <div className="px-4 py-6 text-white md:mx-6 md:p-12"></div>
+                </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
-};
-
-export default Login;
+}
