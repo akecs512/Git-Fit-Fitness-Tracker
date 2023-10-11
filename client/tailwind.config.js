@@ -13,17 +13,10 @@ export default {
         rowdies: ["Rowdies", "cursive"],
         poppins: ["Poppins", "sans-serif"],
       },
-      // colors: {
-      //   bice: "#266B8F", //blue
-      //   cyan: "#2DB4D2", //light blue
-      //   malachite: "#2CDD70",//light green
-      //   plum: "#89527F",//purple
-      //   forest: "#06960F",//dark green
-      // },
     },
   },
   daisyui: {
-    // themes: ["fantasy"],
+   
     themes: [
       {
         mytheme: {

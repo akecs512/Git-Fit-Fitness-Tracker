@@ -12,7 +12,7 @@ const WorkoutsList = ({ workouts, title }) => {
         {workouts &&
           workouts.map((workout, index) => (
             <div key={index} className="col-12 col-xl-6">
-              <div className="card mb-3">
+              <div className="card-list mb-3">
                 <h4 className="card-header bg-accent text-light p-2 m-0">
                   {workout} <br />
                 </h4>

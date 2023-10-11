@@ -17,11 +17,11 @@ const Home = () => {
     <Header />
     <main>
       <div className="flex-row justify-center">
-        <div className="col-12 col-md-10 my-3">
+        <div className="col-12 col-md-10 my-3 text-3xl">
           {loading ? (
             <div>Loading...</div>
           ) : (
-            workouts && <WorkoutsList workouts={workouts} title="Workouts..." />
+            workouts && <WorkoutsList workouts={workouts} title="Workout History" />
           )}
         </div>
       </div>

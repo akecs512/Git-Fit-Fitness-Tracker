@@ -62,7 +62,7 @@
 .login-image {
   background-image: url("/running.webp");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 .user-bg-image {

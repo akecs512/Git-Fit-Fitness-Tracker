@@ -17,7 +17,7 @@ const Header = () => {
           <div>
             {Auth.loggedIn() ? (
               <>
-                <Link className="btn btn-lg btn-primary m-2" to="/me">
+                <Link className="btn btn-lg btn-neutral m-2" to="/me">
                   Add Workout
                 </Link>
               
