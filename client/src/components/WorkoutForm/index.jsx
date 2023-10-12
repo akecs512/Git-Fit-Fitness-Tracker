@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-
+import cn from "classnames";
 import { ADD_WORKOUT } from "../../utils/mutations";
-
 import Auth from "../../utils/auth";
+import { useOnClickOutside } from "use-hooks";
+
 const defaultWorkout = {
   name: "",
   category: "",
@@ -16,11 +17,17 @@ const categories = ["Cardio/Aerobic", "Strength/Resistance", "Flexibility"];
 
 const WorkoutForm = ({ userId }) => {
   const [workout, setWorkout] = useState(defaultWorkout);
+  const [open, setOpen] = useState();
+
+  const ref = useRef();
+  useOnClickOutside(ref, () => setOpen(false));
 
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
 
   const handleClick = (e) => {
     setWorkout({ ...workout, category: e.target.innerText });
+    setOpen(false);
+
   };
 
   const handleFormSubmit = async (event) => {
@@ -53,16 +60,28 @@ const WorkoutForm = ({ userId }) => {
                 onSubmit={handleFormSubmit}
               >
                 <div className="form-control flex flex-col col-12 col-lg-9">
-                  <details className="dropdown mb-8">
-                    <summary className="m-1 btn">Type of Workout</summary>
-                    <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                  <div
+                    className={cn({
+                      "dropdown mb-8": true,
+                      "dropdown-open": open,
+                    })}
+                    ref={ref}
+                  >
+                    <div
+                      className="m-1 btn"
+                      onClick={() => setOpen((prev) => !prev)}
+                    >
+                      {workout.category || "Select a category"}
+                    </div>
+                    <ul className={cn({"p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52":true, hidden:!open})}>
                       {categories.map((category) => (
-                        <li>
+                        <li key={category}>
                           <a onClick={handleClick}>{category}</a>
                         </li>
                       ))}
+                      
                     </ul>
-                  </details>
+                  </div>
                   <div className="form-control flex flex-col col-12 col-lg-9">
                     <input
                       placeholder="Name of workout..."
