@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
+    "@faker-js/faker": "^8.1.0",
     "chart.js": "^4.4.0",
     "graphql": "^16.6.0",
     "jwt-decode": "^3.1.2",
