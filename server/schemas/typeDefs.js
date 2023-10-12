@@ -4,7 +4,21 @@ const typeDefs = `
     name: String
     email: String
     password: String
-    workouts: [String]
+    workouts: [Workout]
+  }
+  type Workout {
+    _id: ID
+    workoutTitle: String
+    workoutDate: String
+    workoutDuration: String
+    comment: String
+  }
+
+  input workoutInput {
+    workoutTitle: String!
+    workoutDate: String!
+    workoutDuration: String!
+    comment: String
   }
 
   type Auth {
@@ -16,15 +30,17 @@ const typeDefs = `
     users: [User]!
     user(userId: ID!): User
     me: User
+    workout(workoutId: ID!): Workout
   }
 
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addWorkout(userId: ID!, workout: String!): User
+    addWorkout(workoutData: workoutInput): User
     removeUser: User
     removeWorkout(workout: String!): User
+    updateWorkout(workoutId: ID!, workoutData: workoutInput): Workout
   }
 `;
 

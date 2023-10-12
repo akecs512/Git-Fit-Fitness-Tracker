@@ -29,3 +29,14 @@ export const QUERY_ME = gql`
     }
   }
 `;
+export const QUERY_WORKOUT = gql`
+  query workout($workoutId: ID!) {
+    workout(workoutId: $workoutId) {
+      _id
+      comment
+      workoutDate
+      workoutDuration
+      workoutTitle
+    }
+  }
+`;

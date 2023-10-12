@@ -6,7 +6,7 @@ import { ADD_WORKOUT } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-const WorkoutForm = ({ userId }) => {
+const WorkoutForm = () => {
   const [workout, setWorkout] = useState("");
 
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
@@ -16,7 +16,7 @@ const WorkoutForm = ({ userId }) => {
 
     try {
       const data = await addWorkout({
-        variables: { userId, workout },
+        variables: { workoutData: workout },
       });
 
       setWorkout("");
