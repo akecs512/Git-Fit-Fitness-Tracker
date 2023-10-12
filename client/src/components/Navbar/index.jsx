@@ -1,4 +1,5 @@
 import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const logout = (event) => {
@@ -9,9 +10,9 @@ const Navbar = () => {
     <>
       <div className="navbar justify-between bg-neutral text-neutral-content">
         <div>
-          <a className="btn btn-ghost normal-case text-xl">
+          <Link to = '/' className="btn btn-ghost normal-case text-xl">
             <img className="nav-logo h-10" src="/gitFitWht.png" alt="logo" />
-          </a>
+          </Link>
         </div>
         <div className="justify-end">
           { Auth.loggedIn() &&
