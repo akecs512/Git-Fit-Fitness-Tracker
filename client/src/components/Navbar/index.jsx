@@ -1,12 +1,15 @@
 import Auth from "../../utils/auth";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname);
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
+
   return (
     <>
       <div className="navbar justify-between bg-neutral text-neutral-content">
@@ -18,9 +21,14 @@ const Navbar = () => {
         <div className="justify-end">
           {Auth.loggedIn() && (
             <>
-              <button className="btn btn-sm btn-light m-2" onClick={() => navigate("/metrics") }>
-                Metrics
-              </button>
+              {location.pathname != "/metrics" && (
+                <button
+                  className="btn btn-sm btn-light m-2"
+                  onClick={() => navigate("/metrics")}
+                >
+                  Metrics
+                </button>
+              )}
 
               <button className="btn btn-sm btn-light m-2" onClick={logout}>
                 Logout
