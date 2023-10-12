@@ -6,7 +6,7 @@ import User from "./pages/User";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
-import Test from "./pages/Test";
+import Metrics from "./pages/Metrics.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,8 +35,8 @@ const router = createBrowserRouter([
         element: <User />,
       },
       {
-        path: "/test",
-        element: <Test />,
+        path: "/metrics",
+        element: <Metrics />,
       },
     ],
   },
