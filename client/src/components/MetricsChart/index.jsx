@@ -1,75 +1,77 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Pie } from "react-chartjs-2";
+import { useEffect, useState } from "react";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
-    },
-  },
-};
-
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const chartData = {
-  labels,
+  labels: ["Strength/Resistance", "Cardio/Aerobics", "Flexibility"],
   datasets: [
     {
-      label: "Dataset 1",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      label: "# of Votes",
+      data: [12, 19, 3],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(255, 206, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(255, 159, 64, 0.2)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
     },
   ],
 };
 
 const MetricsChart = () => {
   const { data } = useQuery(QUERY_ME);
-  console.log("1st:", data);
-
   const workouts = data?.me?.workouts || [];
+  const [counter, setCounter] = useState(0);
 
-  console.log("2nd", workouts);
+  useEffect(() => {
+    const parsedWorkouts =
+      workouts.length > 0 ? workouts.map((workout) => JSON.parse(workout)) : [];
+    console.table(parsedWorkouts);
 
-  console.log(workouts.length > 0 ? JSON.parse(workouts[0]) : "no workouts");
+    const strengthCount = parsedWorkouts.reduce((counter, current) => {
+      if (current.category === "Strength/Resistance") counter += 1;
+      return counter;
+    }, 0);
+    setCounter(strengthCount);
+    console.log(strengthCount);
+
+    const cardioCount = parsedWorkouts.reduce((counter, current) => {
+      if (current.category === "Cardio/Aerobic") counter += 1;
+      return counter;
+    }, 0);
+    setCounter(cardioCount);
+    console.log(cardioCount);
+
+    const flexCount = parsedWorkouts.reduce((counter, current) => {
+      if (current.category === "Flexibility") counter += 1;
+      return counter;
+    }, 0);
+    setCounter(flexCount);
+    console.log(flexCount);
+  }, [workouts]);
+
+  // console.log(workouts.length > 0 ? JSON.parse(workouts[0]) : "no workouts");
 
   return (
     <>
       <div>Metrics</div>
-      <Line options={options} data={chartData} />
+      <span>{counter}</span>
+      <Pie data={chartData} />
     </>
   );
 };
