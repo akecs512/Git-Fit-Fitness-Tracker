@@ -1,8 +1,15 @@
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
 
 const MetricsChart = () => {
-  return (
-    <div>Metrics</div>
-  )
-}
+  const { data } = useQuery(QUERY_ME);
 
-export default MetricsChart
+  const workouts = data?.me?.workouts || [];
+
+  console.log(JSON.parse(workouts[0]))
+
+  
+  return <div>Metrics</div>;
+};
+
+export default MetricsChart;
