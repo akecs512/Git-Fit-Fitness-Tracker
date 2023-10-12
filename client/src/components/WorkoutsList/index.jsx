@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
-const WorkoutsList = ({ workouts, title }) => {
-  if (!workouts.length) {
+const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
+  if (!serializedWorkouts.length) {
     return <h3>No Workouts Yet</h3>;
   }
+
+  const workouts = serializedWorkouts.map((workout) => JSON.parse(workout));
 
   return (
     <div>
@@ -14,7 +16,7 @@ const WorkoutsList = ({ workouts, title }) => {
             <div key={index} className="col-12 col-xl-6">
               <div className="card-list mb-3">
                 <h4 className="card-header bg-accent text-light p-2 m-0">
-                  {workout} <br />
+                  {workout.name} {workout.date}
                 </h4>
                 <Link
                   className="btn  btn-success btn-block btn-squared btn-light text-dark"
