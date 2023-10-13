@@ -16,6 +16,9 @@ const Home = () => {
     <>
     <Header />
     <main>
+         <div
+      className="hero min-h-screen" style=
+      {{ backgroundImage: "url(/fitBg.jpeg" }}>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3 text-3xl">
           {loading ? (
@@ -24,6 +27,7 @@ const Home = () => {
             workouts && <WorkoutsList workouts={workouts} title="Workout History" />
           )}
         </div>
+      </div>
       </div>
     </main>
     </>
