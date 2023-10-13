@@ -27,7 +27,7 @@ export default {
           info: "#89527f", //purple
           success: "#266b8f", //blue
           warning: "#7ce6d2", //light green
-          error: "#c98bbe", //light purple
+          error: "#b69fcc", //light purple
         },
       },
     ],
