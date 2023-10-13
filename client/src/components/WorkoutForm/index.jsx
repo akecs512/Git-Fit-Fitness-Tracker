@@ -47,11 +47,11 @@ const WorkoutForm = ({ userId }) => {
 
   return (
     <>
-      <div>
-        <h4></h4>
+    
+        
 
         {Auth.loggedIn() ? (
-          <div className="card glass">
+          <div className="flex shrink glass">
             <div className="card-body">
               <h2 className="card-title text-5xl justify-center text-secondary font-bold">
                 Add Workout
@@ -155,7 +155,7 @@ const WorkoutForm = ({ userId }) => {
             <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
           </p>
         )}
-      </div>
+  
     </>
   );
 };

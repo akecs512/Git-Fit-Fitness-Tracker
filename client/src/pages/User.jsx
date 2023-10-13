@@ -39,7 +39,7 @@ const User = () => {
 
   return (
     <div
-      className="hero min-h-screen" style=
+      className="hero min-h-screen justify-center" style=
       {{ backgroundImage: "url(/barbells.jpg" }}>
       {/* <h2 className="card-header text-3xl">Add a New Workout</h2> */}
       {/* {user.workouts?.length > 0 && (
@@ -48,7 +48,7 @@ const User = () => {
           isLoggedInUser={!userId && true}
         />
       )} */}
-      <div className="my-4 p-4" style={{ border: "1px dotted #1a1a1a" }}>
+      <div className="my-4 p-4">
         <WorkoutForm userId={user._id} />
       </div>
     </div>
