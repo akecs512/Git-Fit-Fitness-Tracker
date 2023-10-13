@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { STR_OPTION } from "../../utils/categories";
+import { workoutCategoriesBgColors, workoutCategoriesForeColors } from "../../utils/categories";
 
 const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
   if (!serializedWorkouts.length) {
@@ -7,7 +7,6 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
   }
 
   const workouts = serializedWorkouts.map((workout) => JSON.parse(workout));
-  const strColor = STR_OPTION.bgColor;
 
   return (
     <div>
@@ -17,11 +16,15 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
           workouts.map((workout, index) => (
             <div key={index} className="col-12 col-xl-6">
               <div className="card-list mb-3">
-                <h4 className={`card-header ${strColor} text-light p-2 m-0`}>
+                <h4
+                  className={`card-header ${
+                    workoutCategoriesBgColors[workout.category]
+                  } text-light p-2 m-0 bg-primary`}
+                >
                   {workout.name} {workout.date}
                 </h4>
                 <Link
-                  className="btn btn-success btn-block btn-squared btn-light text-dark"
+                  className={`btn ${workoutCategoriesForeColors[workout.category]} btn-block btn-squared btn-light text-dark`}
                   to={`/workouts/:workoutId/`}
                 >
                   View this workout.
