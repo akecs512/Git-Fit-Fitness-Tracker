@@ -43,8 +43,6 @@ const Signup = () => {
     <>
       <main className="flex justify-center mb-4">
      
-          <div className="card">
-            {/* <h4 className="card-header bg-dark text-light p-2">Sign Up</h4> */}
           
               {data ? (
                 <p>
@@ -52,7 +50,7 @@ const Signup = () => {
                   <Link to="/">back to the homepage.</Link>
                 </p>
               ) : (
-                <form className="px-24 pt-8" onSubmit={handleFormSubmit}>
+                <form className="flex flex-col px-16 pt-8" onSubmit={handleFormSubmit}>
                   <input
                     className="form-input"
                     placeholder="Your username"
@@ -78,7 +76,7 @@ const Signup = () => {
                     onChange={handleChange}
                   />
                   <button
-                    className="btn btn-block btn-info"
+                    className="btn btn-info"
                     style={{ cursor: "pointer" }}
                     type="submit"
                   >
@@ -100,8 +98,7 @@ const Signup = () => {
                   {error.message}
                 </div>
               )}
-            </div>
-      
+           
      
       </main>
     </>

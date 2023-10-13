@@ -43,7 +43,7 @@ const LoginForm = (props) => {
   return (
     <main className="flex justify-center mb-4">
      
-        <div className="card">
+       
         
             {data ? (
               <p>
@@ -51,7 +51,7 @@ const LoginForm = (props) => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form className="px-24 pt-8" onSubmit={handleFormSubmit}>
+              <form className="flex flex-col px-16 pt-8" onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
                   placeholder="Your email"
@@ -69,7 +69,7 @@ const LoginForm = (props) => {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-info"
+                  className="btn btn-info"
                   style={{ cursor: "pointer" }}
                   type="submit"
                 >
@@ -92,7 +92,7 @@ const LoginForm = (props) => {
                 {error.message}
               </div>
             )}
-          </div>
+        
  
     </main>
   );
