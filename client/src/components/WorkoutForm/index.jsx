@@ -5,7 +5,6 @@ import cn from "classnames";
 import { ADD_WORKOUT } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { useOnClickOutside } from "use-hooks";
-
 import { workoutCategories } from "../../utils/categories";
 
 const defaultWorkout = {
@@ -16,9 +15,9 @@ const defaultWorkout = {
   notes: "",
 };
 
-// eslint-disable-next-line react/prop-types
 const WorkoutForm = ({ userId }) => {
   const [workout, setWorkout] = useState(defaultWorkout);
+  const [dateValue, setDateValue] = useState("");
   const [open, setOpen] = useState();
   const navigate = useNavigate();
   const ref = useRef();
@@ -102,10 +101,17 @@ const WorkoutForm = ({ userId }) => {
                       type="date"
                       placeholder="Date (MM/DD/YYYY)..."
                       className="form-input"
-                      value={workout.date}
-                      onChange={(event) =>
-                        setWorkout({ ...workout, date: event.target.value })
-                      }
+                      value={dateValue}
+                      onChange={(event) => {
+                        const date = new Date(
+                          event.target.value
+                        ).toLocaleDateString("en-us");
+                        setDateValue(event.target.value);
+                        setWorkout({
+                          ...workout,
+                          date,
+                        });
+                      }}
                     />
                     <input
                       type="number"
