@@ -20,9 +20,9 @@ const chartData = (counterObj) => ({
       // needs to match the order fo workoutCategories.
       data: [counterObj.str, counterObj.card, counterObj.flex],
       backgroundColor: [
-        "rgba(26, 142, 121, 1)",
-        "rgba(137, 82, 127, 1)",
-        "rgba(25, 161, 252, 1)",
+        STR_OPTION.bgColor,
+        CARD_OPTION.bgColor,
+        FLEX_OPTION.bgColor,
       ],
       borderColor: [
         "rgba(255, 99, 132, 1)",
