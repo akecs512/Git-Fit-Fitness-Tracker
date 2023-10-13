@@ -41,17 +41,17 @@ const LoginForm = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
+    <main className="flex justify-center mb-4">
+     
         <div className="card">
-          <div className="card-body">
+        
             {data ? (
               <p>
                 Success! You may now head{" "}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form className="px-24 pt-8" onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
                   placeholder="Your email"
@@ -93,8 +93,7 @@ const LoginForm = (props) => {
               </div>
             )}
           </div>
-        </div>
-      </div>
+ 
     </main>
   );
 };
