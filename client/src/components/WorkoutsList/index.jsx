@@ -3,6 +3,7 @@ import {
   workoutCategoriesBgColors,
   workoutCategoriesForeColors,
 } from "../../utils/categories";
+import { capitalize } from "lodash";
 
 const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
   if (!serializedWorkouts.length) {
@@ -24,7 +25,7 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
                     workoutCategoriesBgColors[workout.category]
                   } `}
                 >
-                  {workout.name} {workout.date}
+                  {capitalize(workout.name)} {workout.date}
                 </h4>
                 <Link
                   className={`btn ${
