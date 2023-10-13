@@ -6,12 +6,16 @@ import { useEffect, useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const chartData = {
-  labels: ["Strength/Resistance", "Cardio/Aerobics", "Flexibility"],
+const STR_OPTION = "Strength/Resistance";
+const CARD_OPTION = "Cardio/Aerobic";
+const FLEX_OPTION = "Flexibility";
+
+const chartData = (counterObj) => ({
+  labels: [STR_OPTION, CARD_OPTION, FLEX_OPTION],
   datasets: [
     {
       label: "# workouts",
-      data: [10,9,4],
+      data: [counterObj.str, counterObj.card, counterObj.flex],
       backgroundColor: [
         "rgba(26, 142, 121, 1)",
         "rgba(137, 82, 127, 1)",
@@ -21,43 +25,33 @@ const chartData = {
         "rgba(255, 99, 132, 1)",
         "rgba(54, 162, 235, 1)",
         "rgba(255, 206, 86, 1)",
-
       ],
       borderWidth: 1,
     },
   ],
-};
+});
+
+const defaultCounter = { str: 0, card: 0, flex: 0 };
 
 const MetricsChart = () => {
   const { data } = useQuery(QUERY_ME);
   const workouts = data?.me?.workouts || [];
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(defaultCounter);
+  const [chartDataState, setChartDataState] = useState(chartData(counter));
 
   useEffect(() => {
     const parsedWorkouts =
       workouts.length > 0 ? workouts.map((workout) => JSON.parse(workout)) : [];
     // console.table(parsedWorkouts);
 
-    const strengthCount = parsedWorkouts.reduce((counter, current) => {
-      if (current.category === "Strength/Resistance") counter += 1;
+    const categoryCount = parsedWorkouts.reduce((counter, current) => {
+      if (current.category === STR_OPTION) counter.str += 1;
+      if (current.category === CARD_OPTION) counter.card += 1;
+      if (current.category === FLEX_OPTION) counter.flex += 1;
       return counter;
-    }, 0);
-    setCounter(strengthCount);
-    // console.log(strengthCount);
-
-    const cardioCount = parsedWorkouts.reduce((counter, current) => {
-      if (current.category === "Cardio/Aerobic") counter += 1;
-      return counter;
-    }, 0);
-    setCounter(cardioCount);
-    // console.log(cardioCount);
-
-    const flexCount = parsedWorkouts.reduce((counter, current) => {
-      if (current.category === "Flexibility") counter += 1;
-      return counter;
-    }, 0);
-    setCounter(flexCount);
-    // console.log(flexCount);
+    }, defaultCounter);
+    setCounter(categoryCount);
+    setChartDataState(chartData(categoryCount));
   }, [workouts]);
 
   // console.log(workouts.length > 0 ? JSON.parse(workouts[0]) : "no workouts");
@@ -68,7 +62,7 @@ const MetricsChart = () => {
       <div className="flex justify-center">
         {/* <span>{counter}</span> */}
         <div className="w-96 h-96 justify-self-center">
-          <Pie data={chartData} />
+          <Pie data={chartDataState} />
         </div>
       </div>
     </>
