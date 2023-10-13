@@ -8,7 +8,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <div className="navbar justify-between bg-neutral text-neutral-content">
+      <div className="navbar bg-neutral text-neutral-content">
         <div>
           <Link to = '/' className="btn btn-ghost normal-case text-xl">
             <img className="nav-logo h-10" src="/gitFitWht.png" alt="logo" />
@@ -22,7 +22,7 @@ const Navbar = () => {
           }
         </div>
       </div>
-      ;
+  
     </>
   );
 };

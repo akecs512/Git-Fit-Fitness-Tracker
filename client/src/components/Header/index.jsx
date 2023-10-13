@@ -5,8 +5,8 @@ import Auth from "../../utils/auth";
 const Header = () => {
   return (
     <>
-      <header className="nav bg-primary text-dark mb-4 py-3 display-flex align-center">
-        <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
+      <header className="nav bg-primary text-dark mb-4 display-flex align-center">
+        <div className="container flex-column justify-center align-center text-center">
           <Link className="text-dark" to="/">
             <h1 className="m-0" style={{ fontSize: "3rem" }}>
             </h1>

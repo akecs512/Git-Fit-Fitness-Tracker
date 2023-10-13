@@ -41,7 +41,7 @@ const User = () => {
     <div
       className="hero min-h-screen" style=
       {{ backgroundImage: "url(/barbells.jpg" }}>
-      <h2 className="card-header text-3xl">Add a New Workout</h2>
+      {/* <h2 className="card-header text-3xl">Add a New Workout</h2> */}
       {/* {user.workouts?.length > 0 && (
         <WorkoutsList
           workouts={user.workouts}
