@@ -3,18 +3,21 @@ import { QUERY_ME } from "../../utils/queries";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { useEffect, useState } from "react";
+import {
+  STR_OPTION,
+  CARD_OPTION,
+  FLEX_OPTION,
+  workoutCategories,
+} from "../../utils/categories";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const STR_OPTION = "Strength/Resistance";
-const CARD_OPTION = "Cardio/Aerobic";
-const FLEX_OPTION = "Flexibility";
-
 const chartData = (counterObj) => ({
-  labels: [STR_OPTION, CARD_OPTION, FLEX_OPTION],
+  labels: workoutCategories,
   datasets: [
     {
       label: "# workouts",
+      // needs to match the order fo workoutCategories.
       data: [counterObj.str, counterObj.card, counterObj.flex],
       backgroundColor: [
         "rgba(26, 142, 121, 1)",
@@ -42,7 +45,6 @@ const MetricsChart = () => {
   useEffect(() => {
     const parsedWorkouts =
       workouts.length > 0 ? workouts.map((workout) => JSON.parse(workout)) : [];
-    // console.table(parsedWorkouts);
 
     const categoryCount = parsedWorkouts.reduce((counter, current) => {
       if (current.category === STR_OPTION) counter.str += 1;
@@ -50,11 +52,10 @@ const MetricsChart = () => {
       if (current.category === FLEX_OPTION) counter.flex += 1;
       return counter;
     }, defaultCounter);
+
     setCounter(categoryCount);
     setChartDataState(chartData(categoryCount));
   }, [workouts]);
-
-  // console.log(workouts.length > 0 ? JSON.parse(workouts[0]) : "no workouts");
 
   return (
     <>

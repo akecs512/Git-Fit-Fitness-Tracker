@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import cn from "classnames";
 import { ADD_WORKOUT } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { useOnClickOutside } from "use-hooks";
+
+import { workoutCategories } from "../../utils/categories";
 
 const defaultWorkout = {
   name: "",
@@ -13,12 +15,12 @@ const defaultWorkout = {
   duration: "",
   notes: "",
 };
-const categories = ["Cardio/Aerobic", "Strength/Resistance", "Flexibility"];
 
+// eslint-disable-next-line react/prop-types
 const WorkoutForm = ({ userId }) => {
   const [workout, setWorkout] = useState(defaultWorkout);
   const [open, setOpen] = useState();
-
+  const navigate = useNavigate();
   const ref = useRef();
   useOnClickOutside(ref, () => setOpen(false));
 
@@ -27,18 +29,18 @@ const WorkoutForm = ({ userId }) => {
   const handleClick = (e) => {
     setWorkout({ ...workout, category: e.target.innerText });
     setOpen(false);
-
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const data = await addWorkout({
+      await addWorkout({
         variables: { userId, workout: JSON.stringify(workout) },
       });
 
       setWorkout(defaultWorkout);
+      navigate("/");
     } catch (err) {
       console.error(err);
     }
@@ -73,13 +75,17 @@ const WorkoutForm = ({ userId }) => {
                     >
                       {workout.category || "Select a category"}
                     </div>
-                    <ul className={cn({"p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52":true, hidden:!open})}>
-                      {categories.map((category) => (
+                    <ul
+                      className={cn({
+                        "p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52": true,
+                        hidden: !open,
+                      })}
+                    >
+                      {workoutCategories.map((category) => (
                         <li key={category}>
                           <a onClick={handleClick}>{category}</a>
                         </li>
                       ))}
-                      
                     </ul>
                   </div>
                   <div className="form-control flex flex-col col-12 col-lg-9">
