@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-import { workoutCategoriesBgColors, workoutCategoriesForeColors } from "../../utils/categories";
+import {
+  workoutCategoriesBgColors,
+  workoutCategoriesForeColors,
+} from "../../utils/categories";
 
 const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
   if (!serializedWorkouts.length) {
@@ -17,14 +20,16 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
             <div key={index} className="col-12 col-xl-6">
               <div className="card-list mb-3">
                 <h4
-                  className={`card-header ${
+                  className={`card-header text-light p-2 m-0 ${
                     workoutCategoriesBgColors[workout.category]
-                  } text-light p-2 m-0 bg-primary`}
+                  } `}
                 >
                   {workout.name} {workout.date}
                 </h4>
                 <Link
-                  className={`btn ${workoutCategoriesForeColors[workout.category]} btn-block btn-squared btn-light text-dark`}
+                  className={`btn ${
+                    workoutCategoriesForeColors[workout.category]
+                  } btn-block btn-squared btn-light text-dark`}
                   to={`/workouts/:workoutId/`}
                 >
                   View this workout.
