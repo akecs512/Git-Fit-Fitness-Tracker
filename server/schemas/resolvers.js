@@ -8,12 +8,12 @@ const resolvers = {
     },
 
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId });
+      return User.findOne({ _id: userId }).populate("workouts");
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate("workouts");
       }
       throw AuthenticationError;
     },
@@ -45,15 +45,15 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addWorkout: async (parent, { workoutData }, context) => {
-      if (context.me) {
+    addWorkout: async (parent, { workoutTitle, workoutDate, workoutDuration, comment }, context) => {
+      if (context.user) {
         const workout = await Workout.create({
-          workoutData
+          workoutTitle, workoutDate, workoutDuration, comment
         });
         const updatedUser = await User.findOneAndUpdate(
-          { _id: context.me._id },
+          { _id: context.user._id },
           {
-            $addToSet: { workouts: workout },
+            $addToSet: { workouts: {...workout }},
           },
           {
             new: true
@@ -63,24 +63,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    // Add a third argument to the resolver to access data in our `context`
-    // addWorkout: async (parent, { userId, workout }, context) => {
-    //   // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-    //   if (context.user) {
-    //     return User.findOneAndUpdate(
-    //       { _id: userId },
-    //       {
-    //         $addToSet: { workouts: workout },
-    //       },
-    //       {
-    //         new: true,
-    //         runValidators: true,
-    //       }
-    //     );
-    //   }
-    //   // If user attempts to execute this mutation and isn't logged in, throw an error
-    //   throw AuthenticationError;
-    // },
+    
     // Set up mutation so a logged in user can only remove their user and no one else's
     removeUser: async (parent, args, context) => {
       if (context.user) {
@@ -99,8 +82,8 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    updateWorkout: async (parent, { workoutId, workoutData }) => {
-      return Workout.findOneAndUpdate({ _id: workoutId }, workoutData, {
+    updateWorkout: async (parent, { workoutId, workoutTitle, workoutDate, workoutDuration, comment }) => {
+      return Workout.findOneAndUpdate({ _id: workoutId}, {workoutTitle, workoutDate, workoutDuration, comment}, {
         new: true,
         runValidators: true,
       });

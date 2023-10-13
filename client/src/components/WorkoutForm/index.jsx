@@ -9,7 +9,7 @@ import Auth from "../../utils/auth";
 const WorkoutForm = () => {
   const [workoutTitle, setworkoutTitle] = useState("");
   const [workoutDate, setworkoutDate] = useState("");
-  const [workoutDuration, setworkoutDuration] = useState("");
+  const [workoutDuration, setworkoutDuration] = useState(0);
   const [comment, setcomment] = useState("");
 
 
@@ -18,14 +18,15 @@ const WorkoutForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    const strDuration =  workoutDuration.toString();
     try {
       const data = await addWorkout({
-        variables: { workoutTitle: workoutTitle, workoutDate: workoutDate, workoutDuration: workoutDuration, comment: comment },
+        variables: { workoutTitle: workoutTitle, workoutDate: workoutDate, workoutDuration: strDuration, comment: comment },
       });
 
       setworkoutTitle("");
       setworkoutDate("");
-      setworkoutDuration("");
+      setworkoutDuration(0);
       setcomment("");
     } catch (err) {
       console.error(err);
@@ -52,7 +53,7 @@ const WorkoutForm = () => {
           <div className="form-control flex flex-col col-12 col-lg-9">
             <input
               placeholder="Name of workout..."
-              value={workout}
+              value={workoutTitle}
               className="form-input border "
               onChange={(event) => setworkoutTitle(event.target.value)}
             />
@@ -60,17 +61,20 @@ const WorkoutForm = () => {
             <input
               type="date"
               placeholder="Date (MM/DD/YYYY)..."
+              value={workoutDate}
               className="form-input "
               onChange={(event) => setworkoutDate(event.target.value)}
             />
             <input
               type="number"
               placeholder="Duration in minutes..."
+               value={workoutDuration}
               className="form-input"
               onChange={(event) => setworkoutDuration(event.target.value)}
             />
             <textarea
               className="form-input"
+              value={comment}
               placeholder="Notes..."
               onChange={(event) => setcomment(event.target.value)}
             ></textarea>

@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const workoutSchema = new Schema({
   workoutTitle: {
     type: String,
-    required: 'You need to leave a workout!',
+    required:  true,
     trim: true,
   },
   workoutDate: {

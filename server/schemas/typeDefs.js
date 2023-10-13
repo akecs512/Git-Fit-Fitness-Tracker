@@ -32,11 +32,11 @@ const typeDefs = `
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addWorkout( workoutTitle: String!, workoutDate: String!, workoutDuration: String!, comment: String!): User
+    addWorkout( workoutTitle: String!, workoutDate: String!, workoutDuration: String!, comment: String): User
    
     removeUser(userId: ID!): User
     removeWorkout(workout: String!): User
-    updateWorkout(workoutId: ID!, workoutTitle: String!, workoutDate: String!, workoutDuration: String!, comment: String!): Workout
+    updateWorkout(workoutId: ID!, workoutTitle: String, workoutDate: String, workoutDuration: String, comment: String): Workout
   }
 `;
 
