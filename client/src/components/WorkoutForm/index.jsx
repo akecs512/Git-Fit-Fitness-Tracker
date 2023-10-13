@@ -7,7 +7,11 @@ import { ADD_WORKOUT } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 const WorkoutForm = () => {
-  const [workout, setWorkout] = useState("");
+  const [workoutTitle, setworkoutTitle] = useState("");
+  const [workoutDate, setworkoutDate] = useState("");
+  const [workoutDuration, setworkoutDuration] = useState("");
+  const [comment, setcomment] = useState("");
+
 
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
 
@@ -16,10 +20,13 @@ const WorkoutForm = () => {
 
     try {
       const data = await addWorkout({
-        variables: { workoutData: workout },
+        variables: { workoutTitle: workoutTitle, workoutDate: workoutDate, workoutDuration: workoutDuration, comment: comment },
       });
 
-      setWorkout("");
+      setworkoutTitle("");
+      setworkoutDate("");
+      setworkoutDuration("");
+      setcomment("");
     } catch (err) {
       console.error(err);
     }
@@ -47,22 +54,25 @@ const WorkoutForm = () => {
               placeholder="Name of workout..."
               value={workout}
               className="form-input border "
-              onChange={(event) => setWorkout(event.target.value)}
+              onChange={(event) => setworkoutTitle(event.target.value)}
             />
 
             <input
               type="date"
               placeholder="Date (MM/DD/YYYY)..."
               className="form-input "
+              onChange={(event) => setworkoutDate(event.target.value)}
             />
             <input
               type="number"
               placeholder="Duration in minutes..."
               className="form-input"
+              onChange={(event) => setworkoutDuration(event.target.value)}
             />
             <textarea
               className="form-input"
               placeholder="Notes..."
+              onChange={(event) => setcomment(event.target.value)}
             ></textarea>
        
 

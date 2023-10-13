@@ -15,12 +15,6 @@ const typeDefs = `
     comment: String
   }
 
-  input workoutInput {
-    workoutTitle: String!
-    workoutDate: String!
-    workoutDuration: String!
-    comment: String
-  }
 
   type Auth {
     token: ID!
@@ -38,10 +32,11 @@ const typeDefs = `
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addWorkout(workoutData: workoutInput): User
-    removeUser: User
+    addWorkout( workoutTitle: String!, workoutDate: String!, workoutDuration: String!, comment: String!): User
+   
+    removeUser(userId: ID!): User
     removeWorkout(workout: String!): User
-    updateWorkout(workoutId: ID!, workoutData: workoutInput): Workout
+    updateWorkout(workoutId: ID!, workoutTitle: String!, workoutDate: String!, workoutDuration: String!, comment: String!): Workout
   }
 `;
 
