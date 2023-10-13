@@ -6,6 +6,7 @@ const typeDefs = `
     password: String
     workouts: [Workout]
   }
+  
   type Workout {
     _id: ID
     workoutTitle: String

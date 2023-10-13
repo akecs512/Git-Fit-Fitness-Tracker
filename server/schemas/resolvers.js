@@ -46,12 +46,12 @@ const resolvers = {
       return { token, user };
     },
     addWorkout: async (parent, { workoutData }, context) => {
-      if (context.user) {
+      if (context.me) {
         const workout = await Workout.create({
           workoutData
         });
         const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
+          { _id: context.me._id },
           {
             $addToSet: { workouts: workout },
           },
