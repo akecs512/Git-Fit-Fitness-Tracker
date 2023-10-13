@@ -48,16 +48,15 @@ const MetricsChart = () => {
       workouts.length > 0 ? workouts.map((workout) => JSON.parse(workout)) : [];
 
     const categoryCount = parsedWorkouts.reduce((counter, current) => {
-      if (current.category === STR_OPTION) counter.str += 1;
-      if (current.category === CARD_OPTION) counter.card += 1;
-      if (current.category === FLEX_OPTION) counter.flex += 1;
+      if (current.category === STR_OPTION.name) counter.str += 1;
+      if (current.category === CARD_OPTION.name) counter.card += 1;
+      if (current.category === FLEX_OPTION.name) counter.flex += 1;
       return counter;
     }, defaultCounter);
 
     setCounter(categoryCount);
     setChartDataState(chartData(categoryCount));
   }, [workouts]);
-
 
   return (
     <>
