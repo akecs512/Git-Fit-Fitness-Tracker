@@ -65,8 +65,12 @@ const MetricsChart = () => {
   return (
     <>
       <div>Metrics</div>
-      {/* <span>{counter}</span> */}
-      <Pie data={chartData} />
+      <div className="flex justify-center">
+        {/* <span>{counter}</span> */}
+        <div className="w-96 h-96 justify-self-center">
+          <Pie data={chartData} />
+        </div>
+      </div>
     </>
   );
 };
