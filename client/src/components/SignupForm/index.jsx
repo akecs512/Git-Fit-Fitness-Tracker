@@ -41,18 +41,18 @@ const Signup = () => {
 
   return (
     <>
-      <main className="flex-row justify-center mb-4">
-        <div className="col-12 col-lg-10">
+      <main className="flex justify-center mb-4">
+     
           <div className="card">
             {/* <h4 className="card-header bg-dark text-light p-2">Sign Up</h4> */}
-            <div className="card-body">
+          
               {data ? (
                 <p>
                   Success! You may now head{" "}
                   <Link to="/">back to the homepage.</Link>
                 </p>
               ) : (
-                <form onSubmit={handleFormSubmit}>
+                <form className="px-24 pt-8" onSubmit={handleFormSubmit}>
                   <input
                     className="form-input"
                     placeholder="Your username"
@@ -101,8 +101,8 @@ const Signup = () => {
                 </div>
               )}
             </div>
-          </div>
-        </div>
+      
+     
       </main>
     </>
   );
