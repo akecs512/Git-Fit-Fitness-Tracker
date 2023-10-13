@@ -6,6 +6,7 @@ import User from "./pages/User";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
+import EditWorkout from "./pages/EditWorkout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>,
+        element: <Home />,
       },
       {
         path: "/login",
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/users/:userId",
         element: <User />,
+      },
+      {
+        path: "workouts/:workoutId",
+        element: <EditWorkout />,
       },
     ],
   },
