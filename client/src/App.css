@@ -75,3 +75,12 @@
   width: 500px;
   height: 700px
 }
+
+.hero {
+  align-items: start;
+}
+
+h3 {
+  font-size: xx-large;
+  font-weight: bolder;;
+}

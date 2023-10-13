@@ -40,17 +40,17 @@ const LoginForm = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <div className="card-body">
+    <main className="flex justify-center mb-4">
+     
+       
+        
             {data ? (
               <p>
                 Success! You may now head{" "}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form className="flex flex-col px-16 pt-8" onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
                   placeholder="Your email"
@@ -68,7 +68,7 @@ const LoginForm = (props) => {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-info"
+                  className="btn btn-info"
                   style={{ cursor: "pointer" }}
                   type="submit"
                 >
@@ -91,9 +91,8 @@ const LoginForm = (props) => {
                 {error.message}
               </div>
             )}
-          </div>
-        </div>
-      </div>
+        
+ 
     </main>
   );
 };

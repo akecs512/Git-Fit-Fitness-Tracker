@@ -20,7 +20,7 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
                 </h4>
                 <Link
                   className="btn  btn-success btn-block btn-squared btn-light text-dark"
-                  to={`/users/`}
+                  to={`/workouts/:workoutId/`}
                 >
                   View this workout.
                 </Link>

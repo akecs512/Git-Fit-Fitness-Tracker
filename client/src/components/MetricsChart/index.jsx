@@ -38,6 +38,7 @@ const defaultCounter = { str: 0, card: 0, flex: 0 };
 
 const MetricsChart = () => {
   const { data } = useQuery(QUERY_ME);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const workouts = data?.me?.workouts || [];
   const [counter, setCounter] = useState(defaultCounter);
   const [chartDataState, setChartDataState] = useState(chartData(counter));
@@ -56,6 +57,7 @@ const MetricsChart = () => {
     setCounter(categoryCount);
     setChartDataState(chartData(categoryCount));
   }, [workouts]);
+
 
   return (
     <>
