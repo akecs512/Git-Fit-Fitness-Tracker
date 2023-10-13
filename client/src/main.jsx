@@ -6,6 +6,7 @@ import User from "./pages/User";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
+import Metrics from "./pages/Metrics.jsx";
 import EditWorkout from "./pages/EditWorkout.jsx";
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/users/:userId",
         element: <User />,
+      },
+      {
+        path: "/metrics",
+        element: <Metrics />,
       },
       {
         path: "workouts/:workoutId",
