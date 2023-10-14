@@ -21,6 +21,11 @@ const workoutSchema = new Schema({
     required: false,
     trim: true,
   },
+  category: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 });
 
 const Workout = model('Workout', workoutSchema);

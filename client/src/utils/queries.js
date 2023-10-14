@@ -55,6 +55,7 @@ export const QUERY_WORKOUT = gql`
       workoutDate
       workoutDuration
       workoutTitle
+      category
     }
   }
 `;
