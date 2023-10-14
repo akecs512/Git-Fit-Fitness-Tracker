@@ -72,11 +72,11 @@ const resolvers = {
       throw AuthenticationError;
     },
     // Make it so a logged in user can only remove a workout from their own user
-    removeWorkout: async (parent, { workout }, context) => {
+    removeWorkout: async (parent, { workoutid }, context) => {
       if (context.user) {
-        return User.findOneAndUpdate(
+        return Workout.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { workouts: workout } },
+          { $pull: { workouts: workoutid } },
           { new: true }
         );
       }

@@ -47,3 +47,12 @@ export const REMOVE_WORKOUT = gql`
     }
   }
 `;
+export const UPDATE_WORKOUT = gql`
+  mutation updateWorkout($workout: String!) {
+    updateWorkout(workout: $workout) {
+      _id
+      name
+      workouts
+    }
+  }
+`;
