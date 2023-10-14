@@ -9,8 +9,8 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
   if (!serializedWorkouts.length) {
     return <h3>No Workouts Yet</h3>;
   }
-
-  const workouts = serializedWorkouts.map((workout) => JSON.parse(workout));
+   console.log(serializedWorkouts)
+  const workouts = serializedWorkouts.map((workout) => workout);
 
   return (
     <div>
@@ -31,7 +31,8 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
                   className={`btn ${
                     workoutCategoriesForeColors[workout.category]
                   } btn-block btn-squared btn-light text-dark`}
-                  to={`/workouts/:workoutId/`}
+                  to={`/workouts/${workout._id}`}
+                  state={{ from: workout }}
                 >
                   View this workout.
                 </Link>
