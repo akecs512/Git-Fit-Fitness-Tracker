@@ -13,13 +13,17 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_WORKOUT = gql`
-  mutation addWorkout($userId: ID!, $workout: String!) {
-    addWorkout(userId: $userId, workout: $workout) {
+  mutation AddWorkout($workoutTitle: String!, $workoutDate: String!, $workoutDuration: String!, $comment: String) {
+  addWorkout(workoutTitle: $workoutTitle, workoutDate: $workoutDate, workoutDuration: $workoutDuration, comment: $comment ) {
+    workouts {
       _id
-      name
-      workouts
+      workoutTitle
+      workoutDate
+      workoutDuration
+      comment
     }
   }
+}
 `;
 
 export const LOGIN_USER = gql`

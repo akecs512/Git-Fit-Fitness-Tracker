@@ -5,7 +5,13 @@ export const QUERY_USERS = gql`
     users {
       _id
       name
-      workouts
+      workouts{
+        _id
+        workoutTitle
+        workoutDate
+        workoutDuration
+        comment
+      }
     }
   }
 `;
@@ -15,7 +21,13 @@ export const QUERY_SINGLE_USER = gql`
     user(userId: $userId) {
       _id
       name
-      workouts
+      workouts{
+        _id
+        workoutTitle
+        workoutDate
+        workoutDuration
+        comment
+      }
     }
   }
 `;
@@ -25,7 +37,24 @@ export const QUERY_ME = gql`
     me {
       _id
       name
-      workouts
+      workouts{
+        _id
+        workoutTitle
+        workoutDate
+        workoutDuration
+        comment
+      }
+    }
+  }
+`;
+export const QUERY_WORKOUT = gql`
+  query workout($workoutId: ID!) {
+    workout(workoutId: $workoutId) {
+      _id
+      comment
+      workoutDate
+      workoutDuration
+      workoutTitle
     }
   }
 `;
