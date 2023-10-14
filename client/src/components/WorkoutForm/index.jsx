@@ -9,14 +9,6 @@ import { ADD_WORKOUT } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-// const defaultWorkout = {
-//   workoutTitle: "",
-//   workoutDate: "",
-//   workoutDuration: "",
-//   comment: "",
-//   category: "",
-// };
-
 const WorkoutForm = () => {
  
   const [category, setCategory] = useState("");
@@ -54,6 +46,7 @@ const WorkoutForm = () => {
       setWorkoutDate("");
       setWorkoutDuration(0);
       setComment("");
+      setCategory("");
     } catch (err) {
       console.error(err);
     }

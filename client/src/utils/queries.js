@@ -11,6 +11,7 @@ export const QUERY_USERS = gql`
         workoutDate
         workoutDuration
         comment
+        category
       }
     }
   }
@@ -27,6 +28,7 @@ export const QUERY_SINGLE_USER = gql`
         workoutDate
         workoutDuration
         comment
+        category
       }
     }
   }
@@ -43,6 +45,7 @@ export const QUERY_ME = gql`
         workoutDate
         workoutDuration
         comment
+        category
       }
     }
   }
