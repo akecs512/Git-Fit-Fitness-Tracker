@@ -1,10 +1,9 @@
-import React from "react";
 import SignupForm from "./../components/SignupForm";
 
 export default function Signup() {
   return (
     <section className="h-full bg-neutral-200 dark:bg-neutral-700">
-      <div className="container h-full p-10">
+      <div className="h-full">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div className="w-full">
             <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
@@ -29,7 +28,7 @@ export default function Signup() {
 
                 {/* <!-- Right column container with background and description--> */}
                 <div className="login-image flex bg-center bg-auto items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none">
-                  <div className="px-4 py-6 text-white md:mx-6 md:p-12"></div>
+                  <div className="px-4 py-96"></div>
                 </div>
               </div>
             </div>

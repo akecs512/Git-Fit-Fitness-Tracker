@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
+import {
+  workoutCategoriesBgColors,
+  workoutCategoriesForeColors,
+} from "../../utils/categories";
+import { capitalize } from "lodash";
 
-const WorkoutsList = ({ workouts, title }) => {
-  if (!workouts.length) {
+const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
+  if (!serializedWorkouts.length) {
     return <h3>No Workouts Yet</h3>;
   }
+
+  const workouts = serializedWorkouts.map((workout) => JSON.parse(workout));
 
   return (
     <div>
@@ -13,12 +20,18 @@ const WorkoutsList = ({ workouts, title }) => {
           workouts.map((workout, index) => (
             <div key={index} className="col-12 col-xl-6">
               <div className="card-list mb-3">
-                <h4 className="card-header bg-accent text-light p-2 m-0">
-                  {workout} <br />
+                <h4
+                  className={`card-header text-light p-2 m-0 ${
+                    workoutCategoriesBgColors[workout.category]
+                  } `}
+                >
+                  {capitalize(workout.name)} {workout.date}
                 </h4>
                 <Link
-                  className="btn  btn-success btn-block btn-squared btn-light text-dark"
-                  to={`/users/`}
+                  className={`btn ${
+                    workoutCategoriesForeColors[workout.category]
+                  } btn-block btn-squared btn-light text-dark`}
+                  to={`/workouts/:workoutId/`}
                 >
                   View this workout.
                 </Link>

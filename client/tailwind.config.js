@@ -16,19 +16,18 @@ export default {
     },
   },
   daisyui: {
-   
     themes: [
       {
         mytheme: {
-          primary: "#1a8e79",//green
-          secondary: "#4cb2ba",//teal
-          accent: "#19a1fc",//light blue
-          neutral: "#212131",//light purple
-          "base-100": "#e0e2f1",//grey
-          info: "#89527f",//purple
-          success: "#266b8f",//blue
-          warning: "#ed8a12",//orange
-          error: "#e22b28",//light orange
+          primary: "#1a8e79", //green
+          secondary: "#4cb2ba", //teal
+          accent: "#19a1fc", //light blue
+          neutral: "#212131", //dark indigo
+          "base-100": "#e0e2f1", //grey
+          info: "#89527f", //purple
+          success: "#266b8f", //blue
+          warning: "#7ce6d2", //light green
+          error: "#b69fcc", //light purple
         },
       },
     ],
