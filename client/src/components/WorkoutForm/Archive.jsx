@@ -22,15 +22,15 @@ const WorkoutForm = () => {
   const [workoutDuration, setworkoutDuration] = useState(0);
   const [comment, setcomment] = useState("");
 
-// =======
-// const WorkoutForm = ({ userId }) => {
-//   const [workout, setWorkout] = useState(defaultWorkout);
-//   const [dateValue, setDateValue] = useState("");
-//   const [open, setOpen] = useState();
-//   const navigate = useNavigate();
-//   const ref = useRef();
-//   useOnClickOutside(ref, () => setOpen(false));
-// >>>>>>> main
+=======
+const WorkoutForm = ({ userId }) => {
+  const [workout, setWorkout] = useState(defaultWorkout);
+  const [dateValue, setDateValue] = useState("");
+  const [open, setOpen] = useState();
+  const navigate = useNavigate();
+  const ref = useRef();
+  useOnClickOutside(ref, () => setOpen(false));
+>>>>>>> main
 
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
 
@@ -53,14 +53,14 @@ const WorkoutForm = () => {
       setworkoutDate("");
       setworkoutDuration(0);
       setcomment("");
-// =======
-//       await addWorkout({
-//         variables: { userId, workout: JSON.stringify(workout) },
-//       });
+=======
+      await addWorkout({
+        variables: { userId, workout: JSON.stringify(workout) },
+      });
 
-//       setWorkout(defaultWorkout);
-//       navigate("/");
-// >>>>>>> main
+      setWorkout(defaultWorkout);
+      navigate("/");
+>>>>>>> main
     } catch (err) {
       console.error(err);
     }

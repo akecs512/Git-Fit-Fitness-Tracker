@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { useOnClickOutside } from "use-hooks";
 import { workoutCategories } from "../../utils/categories";
@@ -9,7 +9,7 @@ import { ADD_WORKOUT } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-const WorkoutForm = () => {
+const WorkoutForm = (userId) => {
  
   const [category, setCategory] = useState("");
   const [workoutTitle, setWorkoutTitle] = useState("");
@@ -18,6 +18,7 @@ const WorkoutForm = () => {
   const [comment, setComment] = useState("");
   const [open, setOpen] = useState();
   const ref = useRef();
+  const navigate = useNavigate();
   useOnClickOutside(ref, () => setOpen(false));
 
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
@@ -34,6 +35,7 @@ const WorkoutForm = () => {
     try {
       await addWorkout({
         variables: {
+          userId: userId,
           workoutTitle: workoutTitle,
           workoutDate: workoutDate,
           workoutDuration: strDuration,
@@ -47,6 +49,7 @@ const WorkoutForm = () => {
       setWorkoutDuration(0);
       setComment("");
       setCategory("");
+      navigate("/")
     } catch (err) {
       console.error(err);
     }
@@ -65,6 +68,7 @@ const WorkoutForm = () => {
                 className="flex flex-row justify-center justify-space-between-md align-center mt-8"
                 onSubmit={handleFormSubmit}
               >
+                <div className="form-control flex flex-col col-12 col-lg-3">
                 <div
                   className={cn({
                     "dropdown mb-8": true,
@@ -105,9 +109,9 @@ const WorkoutForm = () => {
                     value={workoutDate}
                     className="form-input "
                     onChange={(event) => {
-                      const date = new Date(
-                        event.target.value
-                      ).toLocaleDateString("en-US");
+                      // const date = new Date(
+                      //   event.target.value
+                      // ).toLocaleDateString("en-US");
                       setWorkoutDate(event.target.value);
                     }}
                   />
@@ -139,6 +143,7 @@ const WorkoutForm = () => {
                       {error.message}
                     </div>
                   )}
+                </div>
                 </div>
               </form>
             </div>

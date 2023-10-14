@@ -3,18 +3,18 @@ import {
   workoutCategoriesBgColors,
   workoutCategoriesForeColors,
 } from "../../utils/categories";
-import { capitalize } from "lodash";
+import { capitalize } from "lodash" 
 
-const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
-  if (!serializedWorkouts.length) {
+const WorkoutsList = ({ workouts, workoutTitle, workoutDate }) => {
+  if (!workouts.length) {
     return <h3>No Workouts Yet</h3>;
   }
-   console.log(serializedWorkouts)
-  const workouts = serializedWorkouts.map((workout) => workout);
+   console.log(workouts)
+   console.log(workoutTitle)
 
   return (
     <div>
-      <h3 className="text-primary">{title}</h3>
+      <h3 className="text-primary">{workoutTitle}</h3>
       <div className="flex-row justify-space-between my-4">
         {workouts &&
           workouts.map((workout, index) => (
@@ -25,7 +25,7 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
                     workoutCategoriesBgColors[workout.category]
                   } `}
                 >
-                  {capitalize(workout.name)} {workout.date}
+                  {capitalize(workoutTitle)} {workoutDate}
                 </h4>
                 <Link
                   className={`btn ${
