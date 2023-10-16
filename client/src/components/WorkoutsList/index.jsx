@@ -5,16 +5,13 @@ import {
 } from "../../utils/categories";
 import { capitalize } from "lodash";
 
-const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
-  if (!serializedWorkouts.length) {
+const WorkoutsList = ({ workouts }) => {
+  if (!workouts.length) {
     return <h3>No Workouts Yet</h3>;
   }
-   console.log(serializedWorkouts)
-  const workouts = serializedWorkouts.map((workout) => workout);
 
   return (
-    <div>
-      <h3 className="text-primary">{title}</h3>
+    <>
       <div className="flex-row justify-space-between my-4">
         {workouts &&
           workouts.map((workout, index) => (
@@ -25,14 +22,19 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
                     workoutCategoriesBgColors[workout.category]
                   } `}
                 >
-                  {capitalize(workout.name)} {workout.date}
+                  {capitalize(workout.workoutTitle)}{" "}
+                  {new Date(workout.workoutDate * 1).toLocaleString("en-us", {
+                    month: "numeric",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </h4>
                 <Link
                   className={`btn ${
                     workoutCategoriesForeColors[workout.category]
                   } btn-block btn-squared btn-light text-dark`}
                   to={`/workouts/${workout._id}`}
-                  state={{ from: workout }}
+                  state={{ from: "workout" }}
                 >
                   View this workout.
                 </Link>
@@ -40,7 +42,7 @@ const WorkoutsList = ({ workouts: serializedWorkouts, title }) => {
             </div>
           ))}
       </div>
-    </div>
+    </>
   );
 };
 

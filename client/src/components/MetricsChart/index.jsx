@@ -42,11 +42,9 @@ const MetricsChart = () => {
   const [counter, setCounter] = useState(defaultCounter);
   const [chartDataState, setChartDataState] = useState(chartData(counter));
 
-  useEffect(() => {
-    const parsedWorkouts =
-      workouts.length > 0 ? workouts.map((workout) => JSON.parse(workout)) : [];
+  useEffect(() => {s
 
-    const categoryCount = parsedWorkouts.reduce((counter, current) => {
+    const categoryCount = workouts.reduce((counter, current) => {
       if (current.category === STR_OPTION.name) counter.str += 1;
       if (current.category === CARD_OPTION.name) counter.card += 1;
       if (current.category === FLEX_OPTION.name) counter.flex += 1;

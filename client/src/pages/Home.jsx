@@ -6,30 +6,31 @@ import Header from "../components/Header";
 import { QUERY_ME } from "../utils/queries";
 
 const Home = () => {
-
-
   const { loading, data } = useQuery(QUERY_ME);
 
   const workouts = data?.me?.workouts || [];
 
   return (
     <>
-    <Header />
-    <main>
-         <div
-      className="hero min-h-screen" style=
-      {{ backgroundImage: "url(/fitBg.jpeg" }}>
-      <div className="flex-row justify-center">
-        <div className="col-12 col-md-10 my-3 text-3xl">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            workouts && <WorkoutsList workouts={workouts} title="Workout History" />
-          )}
+      <Header />
+      <main>
+        <div
+          className="hero min-h-screen"
+          style={{ backgroundImage: "url(/fitBg.jpeg" }}
+        >
+          <div className="flex-row justify-center">
+            <div className="col-12 col-md-10 my-3 text-3xl">
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                workouts && (
+                  <WorkoutsList workouts={workouts} title="Workout History" />
+                )
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
-    </main>
+      </main>
     </>
   );
 };

@@ -45,10 +45,10 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addWorkout: async (parent, { workoutTitle, workoutDate, workoutDuration, comment }, context) => {
+    addWorkout: async (parent, { workoutTitle, workoutDate, workoutDuration, comment, category }, context) => {
       if (context.user) {
         const workout = await Workout.create({
-          workoutTitle, workoutDate, workoutDuration, comment
+          workoutTitle, workoutDate, workoutDuration, comment, category
         });
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -82,8 +82,8 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    updateWorkout: async (parent, { workoutId, workoutTitle, workoutDate, workoutDuration, comment }) => {
-      return Workout.findOneAndUpdate({ _id: workoutId}, {workoutTitle, workoutDate, workoutDuration, comment}, {
+    updateWorkout: async (parent, { workoutId, workoutTitle, workoutDate, workoutDuration, comment, category }) => {
+      return Workout.findOneAndUpdate({ _id: workoutId}, {workoutTitle, workoutDate, workoutDuration, comment, category}, {
         new: true,
         runValidators: true,
       });
