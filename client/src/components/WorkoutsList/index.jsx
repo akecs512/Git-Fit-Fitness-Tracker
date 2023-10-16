@@ -11,7 +11,7 @@ const WorkoutsList = ({ workouts }) => {
   }
 
   return (
-    <div>
+    <>
       <div className="flex-row justify-space-between my-4">
         {workouts &&
           workouts.map((workout, index) => (
@@ -42,7 +42,7 @@ const WorkoutsList = ({ workouts }) => {
             </div>
           ))}
       </div>
-    </div>
+    </>
   );
 };
 
