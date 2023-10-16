@@ -3,18 +3,15 @@ import {
   workoutCategoriesBgColors,
   workoutCategoriesForeColors,
 } from "../../utils/categories";
-import { capitalize } from "lodash" 
+import { capitalize } from "lodash";
 
-const WorkoutsList = ({ workouts, workoutTitle, workoutDate }) => {
+const WorkoutsList = ({ workouts }) => {
   if (!workouts.length) {
     return <h3>No Workouts Yet</h3>;
   }
-   console.log(workouts)
-   console.log(workoutTitle)
 
   return (
     <div>
-      <h3 className="text-primary">{workoutTitle}</h3>
       <div className="flex-row justify-space-between my-4">
         {workouts &&
           workouts.map((workout, index) => (
@@ -25,14 +22,19 @@ const WorkoutsList = ({ workouts, workoutTitle, workoutDate }) => {
                     workoutCategoriesBgColors[workout.category]
                   } `}
                 >
-                  {capitalize(workoutTitle)} {workoutDate}
+                  {capitalize(workout.workoutTitle)}{" "}
+                  {new Date(workout.workoutDate * 1).toLocaleString("en-us", {
+                    month: "numeric",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </h4>
                 <Link
                   className={`btn ${
                     workoutCategoriesForeColors[workout.category]
                   } btn-block btn-squared btn-light text-dark`}
                   to={`/workouts/${workout._id}`}
-                  state={{ from: workout }}
+                  state={{ from: "workout" }}
                 >
                   View this workout.
                 </Link>
