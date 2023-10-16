@@ -17,7 +17,7 @@ const chartData = (counterObj) => ({
   datasets: [
     {
       label: "# workouts",
-      // needs to match the order fo workoutCategories.
+      // needs to match the order for workoutCategories.
       data: [counterObj.str, counterObj.card, counterObj.flex],
       backgroundColor: [
         STR_OPTION.chartColor,
@@ -42,7 +42,7 @@ const MetricsChart = () => {
   const [counter, setCounter] = useState(defaultCounter);
   const [chartDataState, setChartDataState] = useState(chartData(counter));
 
-  useEffect(() => {s
+  useEffect(() => {
 
     const categoryCount = workouts.reduce((counter, current) => {
       if (current.category === STR_OPTION.name) counter.str += 1;
