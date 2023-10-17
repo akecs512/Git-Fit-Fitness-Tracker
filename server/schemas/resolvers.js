@@ -19,7 +19,7 @@ const resolvers = {
     },
     workout: async (parent, { workoutId }) => {
       return Workout.findOne({ _id: workoutId });
-  },
+    },
   },
 
   Mutation: {
@@ -45,25 +45,33 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addWorkout: async (parent, { workoutTitle, workoutDate, workoutDuration, comment, category }, context) => {
+    addWorkout: async (
+      parent,
+      { title, date, duration, note, category },
+      context
+    ) => {
       if (context.user) {
         const workout = await Workout.create({
-          workoutTitle, workoutDate, workoutDuration, comment, category
+          title,
+          date,
+          duration,
+          note,
+          category,
         });
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
-            $addToSet: { workouts: {...workout }},
+            $addToSet: { workouts: { ...workout } },
           },
           {
-            new: true
+            new: true,
           }
         );
         return updatedUser;
       }
       throw AuthenticationError;
     },
-    
+
     // Set up mutation so a logged in user can only remove their user and no one else's
     removeUser: async (parent, args, context) => {
       if (context.user) {
@@ -77,11 +85,13 @@ const resolvers = {
         const workout = await Workout.findById(workoutId);
 
         if (!workout) {
-          throw new Error('Workout not found');
+          throw new Error("Workout not found");
         }
 
         if (workout.userId !== context.user.id) {
-          throw new AuthenticationError('You are not authorized to delete this workout');
+          throw new AuthenticationError(
+            "You are not authorized to delete this workout"
+          );
         }
 
         const updatedUser = await User.findByIdAndUpdate(
@@ -94,14 +104,21 @@ const resolvers = {
 
         return updatedUser;
       } else {
-        throw new AuthenticationError('User not authenticated');
+        throw new AuthenticationError("User not authenticated");
       }
     },
-    updateWorkout: async (parent, { workoutId, workoutTitle, workoutDate, workoutDuration, comment, category }) => {
-      return Workout.findOneAndUpdate({ _id: workoutId}, {workoutTitle, workoutDate, workoutDuration, comment, category}, {
-        new: true,
-        runValidators: true,
-      });
+    updateWorkout: async (
+      parent,
+      { workoutId, title, date, duration, note, category }
+    ) => {
+      return Workout.findOneAndUpdate(
+        { _id: workoutId },
+        { title, date, duration, note, category },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
     },
   },
 };

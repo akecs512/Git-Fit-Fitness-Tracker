@@ -22,19 +22,22 @@ const WorkoutsList = ({ workouts }) => {
                     workoutCategoriesBgColors[workout.category]
                   } `}
                 >
-                  {capitalize(workout.workoutTitle)}{" "}
-                  {new Date(parseInt(workout.workoutDate)+ 86400000).toLocaleString("en-us", {
-                    month: "numeric",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
+                  {capitalize(workout.title)}{" "}
+                  {new Date(parseInt(workout.date) + 86400000).toLocaleString(
+                    "en-us",
+                    {
+                      month: "numeric",
+                      day: "numeric",
+                      year: "numeric",
+                    }
+                  )}
                 </h4>
                 <Link
                   className={`btn ${
                     workoutCategoriesForeColors[workout.category]
                   } btn-block btn-squared btn-light text-dark`}
                   to={`/workouts/${workout._id}`}
-                  state={{ from: "workout" }}
+                  state={{ from: workout }}
                 >
                   View this workout.
                 </Link>

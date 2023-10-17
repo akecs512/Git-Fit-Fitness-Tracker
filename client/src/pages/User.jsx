@@ -7,6 +7,7 @@ import WorkoutForm from "../components/WorkoutForm";
 import { QUERY_SINGLE_USER, QUERY_ME } from "../utils/queries";
 
 import Auth from "../utils/auth";
+import { ADD_WORKOUT } from "../utils/mutations";
 
 const User = () => {
   const { userId } = useParams();
@@ -39,19 +40,24 @@ const User = () => {
 
   return (
     <div
-      className="hero min-h-screen" style=
-      {{ backgroundImage: "url(/barbells.jpg" }}>
-      {/* <h2 className="card-header text-3xl">Add a New Workout</h2> */}
-      {/* {user.workouts?.length > 0 && (
-        <WorkoutsList
-          workouts={user.workouts}
-          isLoggedInUser={!userId && true}
-        />
-      )} */}
-      <div className="my-4 p-4" style={{ border: "1px dotted #1a1a1a" }}>
-        <WorkoutForm userId={user._id} />
+      className="hero min-h-screen"
+      style={{ backgroundImage: "url(/barbells.jpg" }}
+    >
+        <div className="card glass w-96 my-8">
+            <div className="card-body">
+              <div>
+      <h2 className="card-title text-5xl justify-center text-secondary font-bold">
+        Add Workout
+      </h2>
+      </div>
+   
+      <div>
+        <WorkoutForm userId={user._id} query={ADD_WORKOUT} />
       </div>
     </div>
+    </div>
+    </div>
+  
   );
 };
 
