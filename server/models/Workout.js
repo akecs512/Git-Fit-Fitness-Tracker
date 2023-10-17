@@ -1,9 +1,9 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const workoutSchema = new Schema({
   workoutTitle: {
     type: String,
-    required:  true,
+    required: true,
     trim: true,
   },
   workoutDate: {
@@ -16,7 +16,7 @@ const workoutSchema = new Schema({
     required: true,
     trim: true,
   },
-  comment: {
+  note: {
     type: String,
     required: false,
     trim: true,
@@ -28,6 +28,6 @@ const workoutSchema = new Schema({
   },
 });
 
-const Workout = model('Workout', workoutSchema);
+const Workout = model("Workout", workoutSchema);
 
 module.exports = Workout;

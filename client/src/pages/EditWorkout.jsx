@@ -68,13 +68,6 @@ const EditWorkout = () => {
               >
                 Delete
               </button>
-
-              {/* <button
-                className="btn btn-sm btn-danger ml-auto"
-                onClick={() => handleUpdateWorkout(workoutId)}
-              >
-                Edit
-              </button> */}
             </div>
           </div>
         </div>

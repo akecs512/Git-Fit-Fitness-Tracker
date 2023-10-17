@@ -12,7 +12,7 @@ const typeDefs = `
     workoutTitle: String
     workoutDate: String
     workoutDuration: String
-    comment: String
+    note: String
     category: String
   }
 
@@ -33,12 +33,12 @@ const typeDefs = `
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addWorkout( workoutTitle: String!, workoutDate: String!, workoutDuration: String, comment: String, category: String!): User
+    addWorkout( workoutTitle: String!, workoutDate: String!, workoutDuration: String, note: String, category: String!): User
    
     removeUser(userId: ID!): User
     removeWorkout(workoutId: ID!): User
     updateWorkout(workoutId: ID!, workoutTitle: String, workoutDate: String, workoutDuration: String, 
-      comment: String, category: String): Workout
+      note: String, category: String): Workout
   }
 `;
 
