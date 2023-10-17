@@ -24,7 +24,7 @@ const User = () => {
   if (Auth.loggedIn() && Auth.getUser().data._id === userId) {
     return <Navigate to="/me" />;
   }
-x
+
   if (loading) {
     return <div>Loading...</div>;
   }

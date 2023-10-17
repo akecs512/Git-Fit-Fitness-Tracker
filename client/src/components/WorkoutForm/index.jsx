@@ -5,9 +5,8 @@ import { useOnClickOutside } from "use-hooks";
 import { workoutCategories } from "../../utils/categories";
 import cn from "classnames";
 
-import { ADD_WORKOUT } from "../../utils/mutations";
-
 import Auth from "../../utils/auth";
+import { formatToInputDate } from "../../utils/helpers";
 export const defaultWorkout = {
   title: "",
   date: "",
@@ -17,12 +16,24 @@ export const defaultWorkout = {
   userId: "",
 };
 
-const WorkoutForm = ({ userId, query }) => {
-  const [category, setCategory] = useState("");
-  const [workout, setWorkout] = useState({
-    ...defaultWorkout,
-    userID: Auth.getUser().data._id,
-  });
+const WorkoutForm = ({ userId, query, workout: currWk }) => {
+  const [workout, setWorkout] = useState(
+    currWk
+      ? {
+          title: currWk.workoutTitle,
+          date: currWk.workoutDate,
+          duration: currWk.workoutDuration,
+          comment: currWk.comment,
+          category: currWk.category,
+          userID: Auth.getUser().data._id,
+        }
+      : defaultWorkout
+  );
+  const [category, setCategory] = useState(workout.category);
+  let currDate;
+  if (currWk) currDate = formatToInputDate(currWk.workoutDate);
+  else currDate = "";
+  const [displayDate, setDisplayDate] = useState(currDate);
   const [open, setOpen] = useState();
   const ref = useRef();
   const navigate = useNavigate();
@@ -103,7 +114,7 @@ const WorkoutForm = ({ userId, query }) => {
                     <input
                       placeholder="Name of workout..."
                       value={workout.title}
-                      className="form-input border "
+                      className="form-input border"
                       onChange={(event) =>
                         setWorkout({ ...workout, title: event.target.value })
                       }
@@ -112,9 +123,10 @@ const WorkoutForm = ({ userId, query }) => {
                     <input
                       type="date"
                       placeholder="Date (MM/DD/YYYY)..."
-                      value={workout.date}
-                      className="form-input "
+                      value={displayDate}
+                      className="form-input"
                       onChange={(event) => {
+                        // setDisplayDate(event.target.value);
                         setWorkout({ ...workout, date: event.target.value });
                       }}
                     />

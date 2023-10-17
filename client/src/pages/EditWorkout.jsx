@@ -6,9 +6,7 @@ import { useNavigate } from "react-router-dom";
 import WorkoutForm from "../components/WorkoutForm";
 
 const EditWorkout = () => {
-  const location = useLocation();
-  const { from } = location.state;
-  console.log(from);
+
   const navigate = useNavigate();
 
   const { data: userData } = useQuery(QUERY_ME);
@@ -61,7 +59,7 @@ const EditWorkout = () => {
             {loading ? (
               <div> Loading ...</div>
             ) : (
-              <WorkoutForm userId={userData.me._id} query={UPDATE_WORKOUT} />
+              <WorkoutForm userId={userData.me._id} query={UPDATE_WORKOUT} workout={workoutData} />
             )}
             <div>
               <button
