@@ -49,7 +49,8 @@ const WorkoutForm = (userId) => {
       setWorkoutDuration(0);
       setComment("");
       setCategory("");
-      navigate("/")
+      navigate("/");
+      location.reload();
     } catch (err) {
       console.error(err);
     }
