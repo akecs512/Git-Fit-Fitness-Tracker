@@ -26,6 +26,7 @@ const EditWorkout = () => {
       console.error(err);
     }
     navigate("/");
+    window.location.reload()
   };
 
 const handleUpdateWorkout = async (workOutId) => {
