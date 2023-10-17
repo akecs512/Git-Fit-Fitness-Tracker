@@ -44,42 +44,47 @@ const handleUpdateWorkout = async (workOutId) => {
 
   return (
     <>
-   
       <div
         className="hero min-h-screen"
         style={{ backgroundImage: "url(/musclebg.jpeg" }}
-      >\
-      <div className="card w-96 glass mt-8">
-        <div className="card-body">
-          <h2 className="card-title justify-center">Edit or Delete Your Workout</h2>
+      >
+        <div className="card w-96 glass mt-8">
+          <div className="card-body">
+            <div>
+              <h2 className="card-title text-5xl justify-center text-secondary font-bold">
+                Edit Your Workout
+              </h2>
+            </div>
 
-          {loading ? (<div> Loading ...</div>) : (
-      <div>
-         <p>Category - {workoutData.category}</p> 
-         <p>Title - {workoutData.workoutTitle}</p> 
-         <p>Date - {workoutData.workoutDate}</p> 
-         <p>Duration - {workoutData.workoutDuration} minutes</p> 
-         <p>Notes - {workoutData.comment}</p>  
-      </div>)
-    }
-    <div>
-          <button
-            className="btn btn-sm btn-danger ml-auto"
-            onClick={() => handleRemoveWorkout(workoutData._id)}>
-            Delete
-          </button>
+            {loading ? (
+              <div> Loading ...</div>
+            ) : (
+              <div>
+                <p>Category - {workoutData.category}</p>
+                <p>Title - {workoutData.workoutTitle}</p>
+                <p>Date - {workoutData.workoutDate}</p>
+                <p>Duration - {workoutData.workoutDuration} minutes</p>
+                <p>Notes - {workoutData.comment}</p>
+              </div>
+            )}
+            <div>
+              <button
+                className="btn btn-sm btn-danger ml-auto"
+                onClick={() => handleRemoveWorkout(workoutData._id)}
+              >
+                Delete
+              </button>
 
-          <button
-            className="btn btn-sm btn-danger ml-auto"
-            onClick={() => handleUpdateWorkout(workoutId)}>
-            Edit
-          </button>
-
-          </div>
+              <button
+                className="btn btn-sm btn-danger ml-auto"
+                onClick={() => handleUpdateWorkout(workoutId)}
+              >
+                Edit
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    
     </>
   );
 };

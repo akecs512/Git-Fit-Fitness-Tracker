@@ -4,6 +4,8 @@ import WorkoutsList from "../components/WorkoutsList";
 import Header from "../components/Header";
 
 import { QUERY_ME } from "../utils/queries";
+import HomeBarInfo from "../components/Header/HomeBarInfo";
+
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_ME);
@@ -12,7 +14,9 @@ const Home = () => {
 
   return (
     <>
-      <Header />
+      <Header>
+        <HomeBarInfo />
+      </Header>
       <main>
         <div
           className="hero min-h-screen"
