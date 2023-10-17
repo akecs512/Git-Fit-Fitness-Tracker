@@ -34,7 +34,7 @@ const WorkoutsList = ({ workouts }) => {
                     workoutCategoriesForeColors[workout.category]
                   } btn-block btn-squared btn-light text-dark`}
                   to={`/workouts/${workout._id}`}
-                  state={{ from: "workout" }}
+                  state={{ from: workout }}
                 >
                   View this workout.
                 </Link>

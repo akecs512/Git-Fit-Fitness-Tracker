@@ -7,6 +7,7 @@ import WorkoutForm from "../components/WorkoutForm";
 import { QUERY_SINGLE_USER, QUERY_ME } from "../utils/queries";
 
 import Auth from "../utils/auth";
+import { ADD_WORKOUT } from "../utils/mutations";
 
 const User = () => {
   const { userId } = useParams();
@@ -23,7 +24,7 @@ const User = () => {
   if (Auth.loggedIn() && Auth.getUser().data._id === userId) {
     return <Navigate to="/me" />;
   }
-
+x
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -49,7 +50,7 @@ const User = () => {
         />
       )} */}
       <div className="my-4 p-4" style={{ border: "1px dotted #1a1a1a" }}>
-        <WorkoutForm userId={user._id} />
+        <WorkoutForm userId={user._id} query={ADD_WORKOUT} />
       </div>
     </div>
   );

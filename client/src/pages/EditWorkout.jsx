@@ -1,18 +1,23 @@
-import { useLocation  } from 'react-router-dom'
-import { QUERY_WORKOUT } from "../utils/queries";
-import { REMOVE_WORKOUT, UPDATE_WORKOUT } from "../utils/mutations"
-import { useQuery , useMutation } from "@apollo/client";
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { QUERY_ME, QUERY_WORKOUT } from "../utils/queries";
+import { REMOVE_WORKOUT, UPDATE_WORKOUT } from "../utils/mutations";
+import { useQuery, useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
+import WorkoutForm from "../components/WorkoutForm";
 
 const EditWorkout = () => {
-  const location = useLocation()
-  const { from } = location.state
-  const navigate = useNavigate()
-  
-  
-  const workOutId = window.location.pathname.split('/')[2]
-  const { loading, data } = useQuery(QUERY_WORKOUT,{variables:{workoutId: workOutId}});
-  const workoutData = data?.workout
+  const location = useLocation();
+  const { from } = location.state;
+  console.log(from);
+  const navigate = useNavigate();
+
+  const { data: userData } = useQuery(QUERY_ME);
+
+  const workOutId = window.location.pathname.split("/")[2];
+  const { loading, data } = useQuery(QUERY_WORKOUT, {
+    variables: { workoutId: workOutId },
+  });
+  const workoutData = data?.workout;
 
   const [removeWorkout] = useMutation(REMOVE_WORKOUT);
   const [updateWorkout] = useMutation(UPDATE_WORKOUT);
@@ -26,21 +31,18 @@ const EditWorkout = () => {
       console.error(err);
     }
     navigate("/");
-    window.location.reload()
+    window.location.reload();
   };
 
-const handleUpdateWorkout = async (workOutId) => {
-  try {
-    const { data } = await updateWorkout({
-      variables: { workOutId },
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-
-
+  const handleUpdateWorkout = async (workOutId) => {
+    try {
+      const { data } = await updateWorkout({
+        variables: { workOutId },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <>
@@ -59,13 +61,7 @@ const handleUpdateWorkout = async (workOutId) => {
             {loading ? (
               <div> Loading ...</div>
             ) : (
-              <div>
-                <p>Category - {workoutData.category}</p>
-                <p>Title - {workoutData.workoutTitle}</p>
-                <p>Date - {workoutData.workoutDate}</p>
-                <p>Duration - {workoutData.workoutDuration} minutes</p>
-                <p>Notes - {workoutData.comment}</p>
-              </div>
+              <WorkoutForm userId={userData.me._id} query={UPDATE_WORKOUT} />
             )}
             <div>
               <button

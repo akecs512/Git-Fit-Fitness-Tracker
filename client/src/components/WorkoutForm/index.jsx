@@ -17,7 +17,7 @@ export const defaultWorkout = {
   userId: Auth.getUser().data._id,
 };
 
-const WorkoutForm = ({ userId }) => {
+const WorkoutForm = ({ userId, query }) => {
   const [category, setCategory] = useState("");
   const [workout, setWorkout] = useState(defaultWorkout);
   const [open, setOpen] = useState();
@@ -25,7 +25,7 @@ const WorkoutForm = ({ userId }) => {
   const navigate = useNavigate();
   useOnClickOutside(ref, () => setOpen(false));
 
-  const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
+  const [mutateWorkout, { error }] = useMutation(query);
 
   const handleClick = (e) => {
     setCategory(e.target.innerText);
@@ -36,7 +36,7 @@ const WorkoutForm = ({ userId }) => {
     event.preventDefault();
 
     try {
-      await addWorkout({
+      await mutateWorkout({
         variables: {
           userId: userId,
           workoutTitle: workout.title,
