@@ -1,17 +1,32 @@
 import { useLocation  } from 'react-router-dom'
 import { QUERY_WORKOUT } from "../utils/queries";
-import {REMOVE_WORKOUT} from "../utils/mutations"
+import { REMOVE_WORKOUT, UPDATE_WORKOUT } from "../utils/mutations"
 import { useQuery , useMutation } from "@apollo/client";
+import { useNavigate } from 'react-router-dom';
 
-const handleRemoveWorkout = async (workout) => {
-  try {
-    const { data } = await removeWorkout({
-      variables: { workout },
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
+const EditWorkout = () => {
+  const location = useLocation()
+  const { from } = location.state
+  const navigate = useNavigate()
+  
+  
+  const workOutId = window.location.pathname.split('/')[2]
+  const { loading, data } = useQuery(QUERY_WORKOUT,{variables:{workoutId: workOutId}});
+  const workoutData = data?.workout
+
+  const [removeWorkout] = useMutation(REMOVE_WORKOUT);
+  const [updateWorkout] = useMutation(UPDATE_WORKOUT);
+
+  const handleRemoveWorkout = async (workOutId) => {
+    try {
+      await removeWorkout({
+        variables: { workoutId: workOutId },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+    navigate("/");
+  };
 
 const handleUpdateWorkout = async (workOutId) => {
   try {
@@ -23,14 +38,7 @@ const handleUpdateWorkout = async (workOutId) => {
   }
 };
 
-const EditWorkout = () => {
-const location = useLocation()
-const { from } = location.state
 
-
-const workOutId = window.location.pathname.split('/')[2]
-const { loading, data } = useQuery(QUERY_WORKOUT,{variables:{workoutId: workOutId}});
-const workoutData = data?.workout
 
 
   return (
@@ -56,13 +64,13 @@ const workoutData = data?.workout
     <div>
           <button
             className="btn btn-sm btn-danger ml-auto"
-            onClick={() => handleRemoveWorkout(workout)}>
+            onClick={() => handleRemoveWorkout(workoutData._id)}>
             Delete
           </button>
 
           <button
             className="btn btn-sm btn-danger ml-auto"
-            onClick={() => handleUpdateWorkout(workout)}>
+            onClick={() => handleUpdateWorkout(workoutId)}>
             Edit
           </button>
 
