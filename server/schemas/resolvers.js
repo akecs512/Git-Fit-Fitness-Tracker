@@ -72,16 +72,35 @@ const resolvers = {
       throw AuthenticationError;
     },
     // Make it so a logged in user can only remove a workout from their own user
-    removeWorkout: async (parent, { workoutid }, context) => {
+    removeWorkout: async (parent, { workoutId }, context) => {
       if (context.user) {
-        return Workout.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { workouts: workoutid } },
-          { new: true }
-        );
+        try {
+          const workout = await Workout.findById(workoutId);
+    
+          if (!workout) {
+            throw new Error('Workout not found');
+          }
+        
+          if (workout.userId !== context.user.id) {
+            throw new AuthenticationError('You are not authorized to delete this workout');
+          }
+
+          const updatedUser = await User.findByIdAndUpdate(
+            context.user.id,
+            { $pull: { workouts: workoutId } },
+            { new: true }
+          );
+    
+          await Workout.findByIdAndDelete(workoutId);
+    
+          return updatedUser;
+        } catch (error) {
+          throw error;
+        }
+      } else {
+        throw new AuthenticationError('User not authenticated');
       }
-      throw AuthenticationError;
-    },
+    }
     updateWorkout: async (parent, { workoutId, workoutTitle, workoutDate, workoutDuration, comment, category }) => {
       return Workout.findOneAndUpdate({ _id: workoutId}, {workoutTitle, workoutDate, workoutDuration, comment, category}, {
         new: true,
