@@ -7,10 +7,6 @@ const Header = () => {
     <>
       <header className="nav bg-primary text-dark mb-4 display-flex align-center">
         <div className="container flex-column justify-center align-center text-center">
-          <Link className="text-dark" to="/">
-            <h1 className="m-0" style={{ fontSize: "3rem" }}>
-            </h1>
-          </Link>
           <p className="m-0" style={{ fontSize: "1.75rem", fontWeight: "700" }}>
             Track your workouts and get fit!
           </p>
