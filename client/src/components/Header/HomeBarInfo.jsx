@@ -1,13 +1,11 @@
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
-
-const HomeBarInfo
- = () => {
+const HomeBarInfo = () => {
   return (
     <>
       <p className="m-0" style={{ fontSize: "1.75rem", fontWeight: "700" }}>
-        Track your workouts and get fit!
+       Track your workouts and get fit!
       </p>
       <div>
         {Auth.loggedIn() ? (
@@ -31,5 +29,4 @@ const HomeBarInfo
   );
 };
 
-export default HomeBarInfo
-;
+export default HomeBarInfo;

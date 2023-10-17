@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { QUERY_ME, QUERY_WORKOUT } from "../utils/queries";
 import { REMOVE_WORKOUT, UPDATE_WORKOUT } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
@@ -6,24 +5,23 @@ import { useNavigate } from "react-router-dom";
 import WorkoutForm from "../components/WorkoutForm";
 
 const EditWorkout = () => {
-
   const navigate = useNavigate();
 
   const { data: userData } = useQuery(QUERY_ME);
 
-  const workOutId = window.location.pathname.split("/")[2];
+  const workoutId = window.location.pathname.split("/")[2];
   const { loading, data } = useQuery(QUERY_WORKOUT, {
-    variables: { workoutId: workOutId },
+    variables: { workoutId: workoutId },
   });
   const workoutData = data?.workout;
 
   const [removeWorkout] = useMutation(REMOVE_WORKOUT);
   const [updateWorkout] = useMutation(UPDATE_WORKOUT);
 
-  const handleRemoveWorkout = async (workOutId) => {
+  const handleRemoveWorkout = async (workoutId) => {
     try {
       await removeWorkout({
-        variables: { workoutId: workOutId },
+        variables: { workoutId: workoutId },
       });
     } catch (err) {
       console.error(err);
@@ -32,10 +30,10 @@ const EditWorkout = () => {
     window.location.reload();
   };
 
-  const handleUpdateWorkout = async (workOutId) => {
+  const handleUpdateWorkout = async (workoutId) => {
     try {
       const { data } = await updateWorkout({
-        variables: { workOutId },
+        variables: { workoutId },
       });
     } catch (err) {
       console.error(err);
@@ -59,7 +57,11 @@ const EditWorkout = () => {
             {loading ? (
               <div> Loading ...</div>
             ) : (
-              <WorkoutForm userId={userData.me._id} query={UPDATE_WORKOUT} workout={workoutData} />
+              <WorkoutForm
+                userId={userData.me._id}
+                query={UPDATE_WORKOUT}
+                workout={workoutData}
+              />
             )}
             <div>
               <button
@@ -67,6 +69,12 @@ const EditWorkout = () => {
                 onClick={() => handleRemoveWorkout(workoutData._id)}
               >
                 Delete
+              </button>
+              <button
+                className="btn btn-sm btn-danger ml-auto"
+                onClick={() => handleUpdateWorkout(workoutData._id)}
+              >
+              Update
               </button>
             </div>
           </div>

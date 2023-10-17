@@ -3,10 +3,11 @@ import {
   workoutCategoriesBgColors,
   workoutCategoriesForeColors,
 } from "../../utils/categories";
-import { capitalize } from "lodash";
+import { capitalize } from "lodash"
+import Auth from "../../utils/auth";
 
 const WorkoutsList = ({ workouts }) => {
-  if (!workouts.length) {
+  if (Auth.loggedIn() && !workouts.length) {
     return <h3>No Workouts Yet</h3>;
   }
 
