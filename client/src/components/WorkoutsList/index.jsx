@@ -23,7 +23,7 @@ const WorkoutsList = ({ workouts }) => {
                   } `}
                 >
                   {capitalize(workout.workoutTitle)}{" "}
-                  {new Date(workout.workoutDate * 1).toLocaleString("en-us", {
+                  {new Date(parseInt(workout.workoutDate)+ 86400000).toLocaleString("en-us", {
                     month: "numeric",
                     day: "numeric",
                     year: "numeric",
