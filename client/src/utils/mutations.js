@@ -48,7 +48,13 @@ export const REMOVE_WORKOUT = gql`
 `;
 export const UPDATE_WORKOUT = gql`
   mutation updateWorkout($workout: String!) {
-    updateWorkout(workout: $workout) {
+    updateWorkout(
+      workoutTitle: $workoutTitle
+      workoutDate: $workoutDate
+      workoutDuration: $workoutDuration
+      comment: $comment
+      category: $category
+    ) {
       _id
       name
       workouts

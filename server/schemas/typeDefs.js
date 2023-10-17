@@ -37,7 +37,8 @@ const typeDefs = `
    
     removeUser(userId: ID!): User
     removeWorkout(workoutId: ID!): User
-    updateWorkout(workoutId: ID!, workoutTitle: String, workoutDate: String, workoutDuration: String, comment: String, category: String): Workout
+    updateWorkout(workoutId: ID!, workoutTitle: String, workoutDate: String, workoutDuration: String, 
+      comment: String, category: String): Workout
   }
 `;
 

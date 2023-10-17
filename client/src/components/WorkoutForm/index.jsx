@@ -39,6 +39,8 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
   const navigate = useNavigate();
   useOnClickOutside(ref, () => setOpen(false));
 
+  console.log({ query });
+
   const [mutateWorkout, { error }] = useMutation(query);
 
   const handleClick = (e) => {
@@ -74,11 +76,8 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
     <>
       <div>
         {Auth.loggedIn() ? (
-          <div className="card glass">
-            <div className="card-body">
-              <h2 className="card-title text-5xl justify-center text-secondary font-bold">
-                Add Workout
-              </h2>
+        
+          
               <form
                 className="flex flex-row justify-center justify-space-between-md align-center mt-8"
                 onSubmit={handleFormSubmit}
@@ -86,7 +85,7 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
                 <div className="form-control flex flex-col col-12 col-lg-3">
                   <div
                     className={cn({
-                      "dropdown mb-8": true,
+                      "dropdown": true,
                       "dropdown-open": open,
                     })}
                     ref={ref}
@@ -154,7 +153,7 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
                         className="flex btn btn-info btn-block py-3"
                         type="submit"
                       >
-                        Add Workout
+                       Update Workout
                       </button>
                     </div>
                     {error && (
@@ -165,8 +164,8 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
                   </div>
                 </div>
               </form>
-            </div>
-          </div>
+         
+  
         ) : (
           <p>
             You need to be logged in to add a workout. Please{" "}

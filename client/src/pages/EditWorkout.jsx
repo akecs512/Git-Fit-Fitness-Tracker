@@ -69,12 +69,12 @@ const EditWorkout = () => {
                 Delete
               </button>
 
-              <button
+              {/* <button
                 className="btn btn-sm btn-danger ml-auto"
                 onClick={() => handleUpdateWorkout(workoutId)}
               >
                 Edit
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
