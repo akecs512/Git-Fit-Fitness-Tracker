@@ -14,12 +14,15 @@ export const defaultWorkout = {
   duration: 0,
   comment: "",
   category: "",
-  userId: Auth.getUser().data._id,
+  userId: "",
 };
 
 const WorkoutForm = ({ userId, query }) => {
   const [category, setCategory] = useState("");
-  const [workout, setWorkout] = useState(defaultWorkout);
+  const [workout, setWorkout] = useState({
+    ...defaultWorkout,
+    userID: Auth.getUser().data._id,
+  });
   const [open, setOpen] = useState();
   const ref = useRef();
   const navigate = useNavigate();
