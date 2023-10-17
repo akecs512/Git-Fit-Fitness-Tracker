@@ -1,17 +1,17 @@
 const { Schema, model } = require("mongoose");
 
 const workoutSchema = new Schema({
-  workoutTitle: {
+  title: {
     type: String,
     required: true,
     trim: true,
   },
-  workoutDate: {
+  date: {
     type: Date,
     required: true,
     trim: true,
   },
-  workoutDuration: {
+  duration: {
     type: String,
     required: true,
     trim: true,

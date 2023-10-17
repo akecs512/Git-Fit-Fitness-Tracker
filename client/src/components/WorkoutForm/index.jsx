@@ -20,9 +20,9 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
   const [workout, setWorkout] = useState(
     currWk
       ? {
-          title: currWk.workoutTitle,
-          date: currWk.workoutDate,
-          duration: currWk.workoutDuration,
+          title: currWk.title,
+          date: currWk.date,
+          duration: currWk.duration,
           note: currWk.note,
           category: currWk.category,
           userID: Auth.getUser().data._id,
@@ -32,7 +32,7 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
   );
   const [category, setCategory] = useState(workout.category);
   let currDate;
-  if (currWk) currDate = formatToInputDate(currWk.workoutDate);
+  if (currWk) currDate = formatToInputDate(currWk.date);
   else currDate = "";
   const [displayDate, setDisplayDate] = useState(currDate);
   const [open, setOpen] = useState();
@@ -57,9 +57,9 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
         variables: {
           workoutID: workout.workoutId,
           userId: userId,
-          workoutTitle: workout.title,
-          workoutDate: workout.date,
-          workoutDuration: workout.duration.toString(),
+          title: workout.title,
+          date: workout.date,
+          duration: workout.duration.toString(),
           note: workout.note,
           category: category,
         },

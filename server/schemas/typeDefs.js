@@ -9,9 +9,9 @@ const typeDefs = `
   
   type Workout {
     _id: ID
-    workoutTitle: String
-    workoutDate: String
-    workoutDuration: String
+    title: String
+    date: String
+    duration: String
     note: String
     category: String
   }
@@ -33,11 +33,11 @@ const typeDefs = `
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addWorkout( workoutTitle: String!, workoutDate: String!, workoutDuration: String, note: String, category: String!): User
+    addWorkout( title: String!, date: String!, duration: String, note: String, category: String!): User
    
     removeUser(userId: ID!): User
     removeWorkout(workoutId: ID!): User
-    updateWorkout(workoutId: ID!, workoutTitle: String, workoutDate: String, workoutDuration: String, 
+    updateWorkout(workoutId: ID!, title: String, date: String, duration: String, 
       note: String, category: String): Workout
   }
 `;

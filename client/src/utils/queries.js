@@ -7,9 +7,9 @@ export const QUERY_USERS = gql`
       name
       workouts {
         _id
-        workoutTitle
-        workoutDate
-        workoutDuration
+        title
+        date
+        duration
         note
         category
       }
@@ -24,9 +24,9 @@ export const QUERY_SINGLE_USER = gql`
       name
       workouts {
         _id
-        workoutTitle
-        workoutDate
-        workoutDuration
+        title
+        date
+        duration
         note
         category
       }
@@ -41,9 +41,9 @@ export const QUERY_ME = gql`
       name
       workouts {
         _id
-        workoutTitle
-        workoutDate
-        workoutDuration
+        title
+        date
+        duration
         note
         category
       }
@@ -55,9 +55,9 @@ export const QUERY_WORKOUT = gql`
     workout(workoutId: $workoutId) {
       _id
       note
-      workoutDate
-      workoutDuration
-      workoutTitle
+      date
+      duration
+      title
       category
     }
   }

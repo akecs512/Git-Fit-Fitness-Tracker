@@ -47,14 +47,14 @@ const resolvers = {
     },
     addWorkout: async (
       parent,
-      { workoutTitle, workoutDate, workoutDuration, note, category },
+      { title, date, duration, note, category },
       context
     ) => {
       if (context.user) {
         const workout = await Workout.create({
-          workoutTitle,
-          workoutDate,
-          workoutDuration,
+          title,
+          date,
+          duration,
           note,
           category,
         });
@@ -109,11 +109,11 @@ const resolvers = {
     },
     updateWorkout: async (
       parent,
-      { workoutId, workoutTitle, workoutDate, workoutDuration, note, category }
+      { workoutId, title, date, duration, note, category }
     ) => {
       return Workout.findOneAndUpdate(
         { _id: workoutId },
-        { workoutTitle, workoutDate, workoutDuration, note, category },
+        { title, date, duration, note, category },
         {
           new: true,
           runValidators: true,

@@ -9,11 +9,9 @@ import Auth from "../../utils/auth";
 
 const EditWorkoutForm = ({ workoutId, initialWorkout }) => {
   const [category, setCategory] = useState(initialWorkout.category);
-  const [workoutTitle, setWorkoutTitle] = useState(initialWorkout.workoutTitle);
-  const [workoutDate, setWorkoutDate] = useState(initialWorkout.workoutDate);
-  const [workoutDuration, setWorkoutDuration] = useState(
-    initialWorkout.workoutDuration
-  );
+  const [title, settitle] = useState(initialWorkout.title);
+  const [date, setdate] = useState(initialWorkout.date);
+  const [duration, setduration] = useState(initialWorkout.duration);
   const [note, setnote] = useState(initialWorkout.note);
   const [open, setOpen] = useState(false);
   const ref = useRef();
@@ -34,9 +32,9 @@ const EditWorkoutForm = ({ workoutId, initialWorkout }) => {
       await updateWorkout({
         variables: {
           workoutId,
-          workoutTitle,
-          workoutDate,
-          workoutDuration: parseInt(workoutDuration),
+          title,
+          date,
+          duration: parseInt(duration),
           note,
           category,
         },
@@ -91,32 +89,30 @@ const EditWorkoutForm = ({ workoutId, initialWorkout }) => {
                   <div className="form-control flex flex-col col-12 col-lg-9">
                     <input
                       placeholder="Name of workout..."
-                      value={workoutTitle}
+                      value={title}
                       className="form-input border "
-                      onChange={(event) => setWorkoutTitle(event.target.value)}
+                      onChange={(event) => settitle(event.target.value)}
                     />
 
                     <input
                       type="date"
                       placeholder="Date (MM/DD/YYYY)..."
-                      value={workoutDate}
+                      value={date}
                       className="form-input "
                       onChange={(event) => {
                         // const date = new Date(
                         //   event.target.value
                         // ).toLocaleDateString("en-US");
-                        setWorkoutDate(event.target.value);
+                        setdate(event.target.value);
                       }}
                     />
 
                     <input
                       type="number"
                       placeholder="Duration in minutes..."
-                      value={workoutDuration}
+                      value={duration}
                       className="form-input"
-                      onChange={(event) =>
-                        setWorkoutDuration(event.target.value)
-                      }
+                      onChange={(event) => setduration(event.target.value)}
                     />
                     <textarea
                       className="form-input"
