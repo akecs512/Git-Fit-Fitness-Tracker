@@ -10,7 +10,7 @@ import { formatToInputDate } from "../../utils/helpers";
 export const defaultWorkout = {
   title: "",
   date: "",
-  duration: 0,
+  duration: "",
   note: "",
   category: "",
   userId: "",
@@ -122,6 +122,7 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
                   value={displayDate}
                   className="form-input"
                   onChange={(event) => {
+                    setDisplayDate(event.target.value);
                     setWorkout({ ...workout, date: event.target.value });
                   }}
                 />

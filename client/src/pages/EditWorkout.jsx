@@ -15,7 +15,6 @@ const EditWorkout = () => {
   const workoutData = data?.workout;
 
   const [removeWorkout] = useMutation(REMOVE_WORKOUT);
-  const [updateWorkout] = useMutation(UPDATE_WORKOUT);
 
   const handleRemoveWorkout = async (workoutId) => {
     try {
@@ -29,15 +28,7 @@ const EditWorkout = () => {
     window.location.reload();
   };
 
-  const handleUpdateWorkout = async (workoutId) => {
-    try {
-      const { data } = await updateWorkout({
-        variables: { workoutId },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+
 
   return (
     <>
@@ -69,12 +60,7 @@ const EditWorkout = () => {
               >
                 Delete
               </button>
-              <button
-                className="btn btn-sm btn-danger ml-auto"
-                onClick={() => handleUpdateWorkout(workoutData._id)}
-              >
-                Update
-              </button>
+        
             </div>
           </div>
         </div>
