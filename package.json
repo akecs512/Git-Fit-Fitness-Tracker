@@ -1,9 +1,10 @@
 {
   "name": "git-fit",
   "version": "1.0.0",
-    "engines": {
-    "node": "18.x"},  
-  "description": "",
+  "engines": {
+    "node": "18.x"
+  },
+  "description": "![GitFitLogo](client/public/logoShape.png)",
   "main": "server/server.js",
   "scripts": {
     "start": "node server --ignore client",
