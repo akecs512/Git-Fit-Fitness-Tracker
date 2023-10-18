@@ -1,5 +1,5 @@
 
-import BmiCalculator from "../components/BMICalculator";
+import BmiCalculator from "../components/BmiCalculator";
 import MetricsChart from "../components/MetricsChart";
 
 
