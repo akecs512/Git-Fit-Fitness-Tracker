@@ -59,14 +59,28 @@ export const REMOVE_WORKOUT = gql`
   }
 `;
 export const UPDATE_WORKOUT = gql`
-  mutation updateWorkout($workoutId: ID!) {
-    updateWorkout(workoutId: $workoutId) {
-      _id
-      category
-      note
-      date
-      duration
+  mutation updateWorkout(
+    $workoutId: ID!
+    $title: String
+    $note: String
+    $date: String
+    $duration: String
+    $category: String
+  ) {
+    updateWorkout(
+      workoutId: $workoutId
+      title: $title
+      note: $note
+      date: $date
+      duration: $duration
+      category: $category
+    ) {
       title
+      note
+      duration
+      date
+      category
+      _id
     }
   }
 `;

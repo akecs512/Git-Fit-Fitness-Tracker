@@ -6,8 +6,7 @@ import WorkoutForm from "../components/WorkoutForm";
 
 const EditWorkout = () => {
   const navigate = useNavigate();
-
-  const { data: userData } = useQuery(QUERY_ME);
+  const { loading: userLoading, data: userData } = useQuery(QUERY_ME);
 
   const workoutId = window.location.pathname.split("/")[2];
   const { loading, data } = useQuery(QUERY_WORKOUT, {
@@ -21,7 +20,7 @@ const EditWorkout = () => {
   const handleRemoveWorkout = async (workoutId) => {
     try {
       await removeWorkout({
-        variables: { workoutId: workoutId },
+        variables: { workoutId },
       });
     } catch (err) {
       console.error(err);
@@ -54,7 +53,7 @@ const EditWorkout = () => {
               </h2>
             </div>
 
-            {loading ? (
+            {loading || userLoading ? (
               <div> Loading ...</div>
             ) : (
               <WorkoutForm
@@ -74,7 +73,7 @@ const EditWorkout = () => {
                 className="btn btn-sm btn-danger ml-auto"
                 onClick={() => handleUpdateWorkout(workoutData._id)}
               >
-              Update
+                Update
               </button>
             </div>
           </div>

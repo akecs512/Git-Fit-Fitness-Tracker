@@ -25,7 +25,7 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
           duration: currWk.duration,
           note: currWk.note,
           category: currWk.category,
-          userID: Auth.getUser().data._id,
+          userId: Auth.getUser().data._id,
           workoutId: currWk._id,
         }
       : defaultWorkout
@@ -39,9 +39,6 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
   const ref = useRef();
   const navigate = useNavigate();
   useOnClickOutside(ref, () => setOpen(false));
-
-  console.log({ query });
-
   const [mutateWorkout, { error }] = useMutation(query);
 
   const handleClick = (e) => {
@@ -55,8 +52,8 @@ const WorkoutForm = ({ userId, query, workout: currWk }) => {
     try {
       await mutateWorkout({
         variables: {
-          workoutID: workout.workoutId,
-          userId: userId,
+          workoutId: workout.workoutId,
+          userId,
           title: workout.title,
           date: workout.date,
           duration: workout.duration.toString(),
