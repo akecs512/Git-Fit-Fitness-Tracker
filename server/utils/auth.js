@@ -28,7 +28,7 @@ module.exports = {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
     } catch {
-      console.error('Invalid token');
+      console.error('Invalid JWT');
     }
 
     // return the request object so it can be passed to the resolver as `context`

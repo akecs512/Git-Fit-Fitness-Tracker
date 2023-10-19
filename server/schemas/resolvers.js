@@ -73,14 +73,14 @@ const resolvers = {
     },
 
     // Set up mutation so a logged in user can only remove their user and no one else's
-    removeUser: async (parent, args, context) => {
+    removeUser: async (_parent, _args, context) => {
       if (context.user) {
         return User.findOneAndDelete({ _id: context.user._id });
       }
       throw AuthenticationError;
     },
     // Make it so a logged in user can only remove a workout from their own user
-    removeWorkout: async (parent, { workoutId }, context) => {
+    removeWorkout: async (_parent, { workoutId }, context) => {
       if (context.user) {
         const workout = await Workout.findById(workoutId);
 
@@ -94,31 +94,44 @@ const resolvers = {
           );
         }
 
-        const updatedUser = await User.findByIdAndUpdate(
-          context.user.id,
-          { $pull: { workouts: workoutId } },
-          { new: true }
-        );
+        const updatedWorkout = await Workout.findByIdAndDelete(workoutId);
 
-        await Workout.findByIdAndDelete(workoutId);
-
-        return updatedUser;
+        return updatedWorkout;
       } else {
         throw new AuthenticationError("User not authenticated");
       }
     },
     updateWorkout: async (
-      parent,
-      { workoutId, title, date, duration, note, category }
+      _parent,
+      { workoutId, title, date, duration, note, category },
+      context
     ) => {
-      return Workout.findOneAndUpdate(
-        { _id: workoutId },
-        { title, date, duration, note, category },
-        {
-          new: true,
-          runValidators: true,
+      if (context.user) {
+        const workout = await Workout.findById(workoutId);
+
+        if (!workout) {
+          throw new Error("Workout not found");
         }
-      );
+
+        if (workout.userId !== context.user.id) {
+          throw new AuthenticationError(
+            "You are not authorized to update this workout"
+          );
+        }
+
+        const updatedWorkout = await Workout.findByIdAndUpdate(
+          workoutId,
+          {
+            title,
+            date,
+            duration,
+            note,
+            category,
+          },
+          { new: true }
+        );
+        return updatedWorkout;
+      }
     },
   },
 };
