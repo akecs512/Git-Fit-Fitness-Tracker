@@ -16,8 +16,10 @@ const WorkoutsList = ({ workouts }) => {
       <div className="flex-row justify-space-between my-4">
         {workouts &&
           workouts.map((workout, index) => (
-            <div key={index} className="col-12 col-xl-6">
-              <div className="card-list mb-3 rounded">
+            <div key={index} className="col-12 col-xl-6 mb-5">
+              {/* <div className="card-list mb-3 border-2  rounded"> */}
+              <div className={`card w-96 bg-base-100 shadow-xl h-auto ${workout.category==="Strength/Resistance"? `border-strength`: workout.category === "Flexibility"? `border-flexibility`: `border-cardio` }`}>
+                <div className="card-body">
                 <h4
                   className={`card-header text-light p-2 m-0 rounded-md ${
                     workoutCategoriesBgColors[workout.category]
@@ -33,6 +35,9 @@ const WorkoutsList = ({ workouts }) => {
                     }
                   )}
                 </h4>
+                <p>Category: {capitalize(workout.category)}</p>
+                <p>Duration: {capitalize(workout.duration)}</p>
+                <p>Comment: {capitalize(workout.note)}</p>
                 <Link
                   className={`btn ${
                     workoutCategoriesForeColors[workout.category]
@@ -42,6 +47,7 @@ const WorkoutsList = ({ workouts }) => {
                 >
                   View this workout.
                 </Link>
+              </div>
               </div>
             </div>
           ))}
