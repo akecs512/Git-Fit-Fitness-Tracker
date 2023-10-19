@@ -36,7 +36,7 @@ const WorkoutsList = ({ workouts }) => {
                   )}
                 </h4>
                 <p>Category: {capitalize(workout.category)}</p>
-                <p>Duration: {capitalize(workout.duration)}</p>
+                <p>Duration: {capitalize(workout.duration)} minutes</p>
                 <p>Comment: {capitalize(workout.note)}</p>
                 <Link
                   className={`btn ${
