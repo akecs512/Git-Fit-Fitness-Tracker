@@ -1,11 +1,11 @@
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
-const HomeBarInfo = () => {
+const HomeBarInfo = ({name}) => {
   return (
     <>
-      <p className="m-0" style={{ fontSize: "1.75rem", fontWeight: "700" }}>
-       Track your workouts and get fit!
+      <p className="m-0 font-bold md:text-4xl sm:text-3xl min-[340px]:text-2xl">
+       {name} Track your workouts and get fit!
       </p>
       <div>
         {Auth.loggedIn() ? (

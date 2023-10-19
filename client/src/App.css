@@ -63,6 +63,7 @@
   background-image: url("/running.webp");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 .user-bg-image {

@@ -9,13 +9,14 @@ import HomeBarInfo from "../components/Header/HomeBarInfo";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_ME);
-
+ 
   const workouts = data?.me?.workouts || [];
+  const user = data?.me || {}
 
   return (
     <>
       <Header>
-        <HomeBarInfo />
+        <HomeBarInfo name={user.name} />
       </Header>
       <main>
         <div

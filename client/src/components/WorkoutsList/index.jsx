@@ -17,9 +17,9 @@ const WorkoutsList = ({ workouts }) => {
         {workouts &&
           workouts.map((workout, index) => (
             <div key={index} className="col-12 col-xl-6">
-              <div className="card-list mb-3">
+              <div className="card-list mb-3 rounded">
                 <h4
-                  className={`card-header text-light p-2 m-0 ${
+                  className={`card-header text-light p-2 m-0 rounded-md ${
                     workoutCategoriesBgColors[workout.category]
                   } `}
                 >
