@@ -1,66 +1,67 @@
-![GitFitLogo](client/public/logoShape.png)
-
-## Description
-
-Git-Fit is an app that is used by recording your personal workout/excercise information for you to look back on in the future
-
-https://enigmatic-garden-97881-5a06f2d72820.herokuapp.com/
-
-## User Story
-
- As someone that wants to keep better care of myself, I want to have a way to record my workouts so that I can look back and view my progress. 
-
+# GIT-FIT REACT FITNESS TRACKER
 
 ## Table of Contents
+- [Description](#description)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Deployed Website](#deployed-website)
+- [Technologies Used](#technologies-used)
+- [System Usage](#system-usage)
+    - [Styling](#styling)
+- [Special Thanks](#special-thanks)
+- [License](#license)
 
-* [Usage](#usage)
-* [Acceptance Criteria](#Acceptance-Criteria)
-* [Credits](#Credits)
-* [License](#License)
+## Description
+  Track your daily workouts. Keep a log of all your daily workouts and record information such as type of workout, date, duration and notes. There is also a pie chart to compare how many of each type of workout you have logged.
+
+## Usage
+  After signing up as a new user on the signup page, or logging in on the login page, the user is taken to the home page where they are presented with an `Add Workout` button. After they click on it, they are prompted to enter information about their new workout. A drop down menu offers 3 categories of workouts: Strength/Resistance. Cardio/Aerobics, and Flexibility. Then there is a form to fill in the name of the workout, the date, the duration, and any notes the user may want to add. They then click the `Add Workout` button at the bottom of the form, and they are redirected to the home page, where the new workout is added and is displayed as a list item of all workouts. The name and date of the workout appear with a `View this workout` link underneath. The user is then taken to the Edit Workout page where they can edit or delete the workout. 
+  In the navabar at there is a logo that links to the homepage. The `Metrics` button loads the pie graph where the user can see each the overall number of each category of workouts displayed in the graph. If the user hovers over each corresponding color of the chart, they can see the category name and how many times they logged that type of workout. 
+  There is also a logout button in the navbar for the user to logout.
+
+## Screenshots
+<img width="1349" alt="Screen Shot 2023-11-29 at 6 33 13 PM" src="https://github.com/akecs512/Git-Fit-Fitness-Tracker/assets/79340489/3fd71c0a-ce69-4fe6-be92-abf9cf298ddd">
+<img width="1398" alt="Screen Shot 2023-11-29 at 6 35 04 PM" src="https://github.com/akecs512/Git-Fit-Fitness-Tracker/assets/79340489/2ebf3cd5-0e9a-4e05-8a1d-c1855e5c6817">
+<img width="1432" alt="Screen Shot 2023-11-29 at 6 34 49 PM" src="https://github.com/akecs512/Git-Fit-Fitness-Tracker/assets/79340489/0d0c0e59-fa38-4cc2-8bcb-da8d12ad08bb">
+<img width="393" alt="Screen Shot 2023-11-29 at 6 35 18 PM" src="https://github.com/akecs512/Git-Fit-Fitness-Tracker/assets/79340489/bac54718-72a4-4e33-8f47-c039e306fe74">
 
 
-## Usage 
+## Deployed Website
+https://enigmatic-garden-97881-5a06f2d72820.herokuapp.com/
 
-After accessing the app, the user will then log in or sign up, depending on if they have an account already or not.
-Once logged in, the user will then be able to add a new workout from their homepage.
-When the "add workout" button is pushed, a form is pulled up and the user is prompted to fill out all fields.
-After the workout is added, the user is taken back to the homepage where they will see the newly added workout.
-The user can then click on the individual workout if they would like to edit or delete the submission.
+### Technologies Used
+Tailwind CSS, DaisyUI, React, Vite, Apollo, GraphQL, MongoDB, Mongoose, Express, Nodejs, Heroku.
+
+## System Usage
+
+### Styling
+Styling is done through Tailwind CSS, and DaisyUI
 
 
-## Acceptance Criteria
-With your group, you’ll again conceive and execute a design that solves a real-world problem. In creating your first collaborative MERN-stack single-page application, you’ll combine a scalable MongoDB back end, a GraphQL API, and an Express.js and Node.js server with a React front end, implementing user authentication with JWT to build a user-focused platform. You’ll continue to build on the agile development methodologies you’ve used throughout this course. These include storing your project code in GitHub, managing your work with a project management tool, and implementing feature and bug fixes using the Git branch workflow and pull requests.
 
-For this project, you should start from scratch. Doing so will allow you to revisit your front-end abilities in the context of React and solidify your understanding of working with multiple servers in a MERN application. Your skills have continued to improve since the first two projects, so naturally your approach will be different considering the experience you’ve gained with each new application you’ve built.
-
-Your group will use everything you’ve learned throughout this course to create a MERN-stack single-page application that works with real-world data to solve a real-world challenge, with a focus on data and user demand. This project will provide you with the best opportunity to demonstrate your problem-solving skills, which employers will want to observe. Once again, the user story and acceptance criteria will depend on the project that you create, but your project must fulfill the following requirements:
-
-* Use React for the front end.
-
-* Use GraphQL with a Node.js and Express.js server.
-
-* Use MongoDB and the Mongoose ODM for the database.
-
-* Use queries and mutations for retrieving, adding, updating, and deleting data.
-
-* Be deployed using Heroku (with data).
-
-* Have a polished UI.
-
-* Be responsive.
-
-* Be interactive (i.e., accept and respond to user input).
-
-* Include authentication (JWT).
-
-* Protect sensitive API key information on the server.
-
-* Have a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class and id naming conventions, indentation, high-quality comments, and so on).
-
-* Have a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
-
-## Credits
+### Special Thanks
+To out teacher Eli Montoya and all our teaching assistants and tutors.
 
 ## License
 
-MIT
+Copyright (c) 2023 Adrienne Kecskes
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.# new-project
