@@ -12,7 +12,7 @@
 - [License](#license)
 
 ## Description
-  Track your daily workouts. Keep a log of all your daily workouts and record information such as type of workout, date, duration and notes. There is also a pie chart to compare how many of each type of workout you have logged and also a BMI calculator.
+  Track your daily workouts. Keep a log of all your daily workouts and record information such as type of workout, date, duration and notes. There is also a pie chart to compare how many of each type of workout you have logged as well as a BMI calculator.
 
 ## Usage
   After signing up as a new user on the signup page, or logging in on the login page, the user is taken to the home page where they are presented with an `Add Workout` button. After they click on it, they are prompted to enter information about their new workout. A drop down menu offers 3 categories of workouts: Strength/Resistance. Cardio/Aerobics, and Flexibility. Then there is a form to fill in the name of the workout, the date, the duration, and any notes the user may want to add. They then click the `Add Workout` button at the bottom of the form, and they are redirected to the home page, where the new workout is added and is displayed as a list item of all workouts. The name and date of the workout appear with a `View this workout` link underneath. The user is then taken to the Edit Workout page where they can edit or delete the workout. 
